@@ -36,30 +36,49 @@ function beep(type = "correct") {
   if (!state.soundOn) return;
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   const ctx = new AudioContext();
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
 
-  osc.connect(gain);
-  gain.connect(ctx.destination);
+  function tone(freq, start, duration, volume = 0.22, wave = "sine", endFreq = null) {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = wave;
+    osc.connect(gain);
+    gain.connect(ctx.destination);
 
-  if (type === "correct") {
-    osc.frequency.setValueAtTime(660, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(990, ctx.currentTime + 0.16);
-  } else if (type === "wrong") {
-    osc.frequency.setValueAtTime(220, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.22);
-  } else if (type === "tick") {
-    osc.frequency.setValueAtTime(880, ctx.currentTime);
-  } else {
-    osc.frequency.setValueAtTime(520, ctx.currentTime);
+    osc.frequency.setValueAtTime(freq, ctx.currentTime + start);
+    if (endFreq) {
+      osc.frequency.exponentialRampToValueAtTime(endFreq, ctx.currentTime + start + duration);
+    }
+
+    gain.gain.setValueAtTime(0.0001, ctx.currentTime + start);
+    gain.gain.exponentialRampToValueAtTime(volume, ctx.currentTime + start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + start + duration);
+
+    osc.start(ctx.currentTime + start);
+    osc.stop(ctx.currentTime + start + duration + 0.03);
   }
 
-  gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.25, ctx.currentTime + 0.02);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.28);
-
-  osc.start();
-  osc.stop(ctx.currentTime + 0.3);
+  if (type === "correct") {
+    tone(523, 0.00, 0.18, 0.24, "triangle");
+    tone(659, 0.13, 0.20, 0.24, "triangle");
+    tone(784, 0.27, 0.25, 0.26, "triangle");
+    tone(1046, 0.42, 0.36, 0.30, "triangle");
+  } else if (type === "wrong") {
+    tone(260, 0.00, 0.24, 0.28, "sawtooth", 150);
+    tone(180, 0.22, 0.30, 0.26, "sawtooth", 95);
+    tone(110, 0.50, 0.35, 0.22, "square", 70);
+  } else if (type === "laugh") {
+    tone(330, 0.00, 0.10, 0.20, "square");
+    tone(250, 0.12, 0.10, 0.20, "square");
+    tone(330, 0.24, 0.10, 0.20, "square");
+    tone(250, 0.36, 0.14, 0.20, "square");
+  } else if (type === "tick") {
+    tone(900, 0.00, 0.055, 0.11, "square");
+  } else if (type === "timerStart") {
+    tone(700, 0.00, 0.10, 0.16, "triangle");
+    tone(920, 0.12, 0.10, 0.16, "triangle");
+  } else {
+    tone(520, 0.00, 0.20, 0.18, "sine");
+  }
 }
 
 function init() {
@@ -161,15 +180,15 @@ function setQuestion() {
   const q = cat.questions[state.questionIndex];
   if (!q) return;
 
+  clearQuestionFeedback();
   visual.textContent = q.visual;
   questionType.textContent = q.type;
   questionText.textContent = q.q;
   answerText.textContent = q.a;
   answerBox.classList.add("hidden");
   state.timerLeft = state.timerSeconds;
-  stopTimer();
-  beep("start");
   render();
+  startTimer(true);
 }
 
 function nextQuestion() {
@@ -194,14 +213,19 @@ function showAnswer() {
 }
 
 function markCorrect() {
+  stopTimer();
   changeScore(1);
   showAnswer();
   beep("correct");
+  showQuestionFeedback("correct", "✅ CORRECT!");
 }
 
 function markWrong() {
+  stopTimer();
   showAnswer();
   beep("wrong");
+  setTimeout(() => beep("laugh"), 420);
+  showQuestionFeedback("wrong", "❌ WRONG!");
 }
 
 function changeScore(delta) {
@@ -222,19 +246,27 @@ function resetScore() {
   render();
 }
 
-function startTimer() {
+function startTimer(auto = false) {
   stopTimer();
   state.timerLeft = state.timerSeconds;
   render();
 
+  beep(auto ? "timerStart" : "tick");
+
   state.timerId = setInterval(() => {
     state.timerLeft -= 1;
-    if (state.timerLeft <= 5 && state.timerLeft > 0) beep("tick");
+
+    if (state.timerLeft > 0) {
+      beep("tick");
+    }
+
     if (state.timerLeft <= 0) {
       state.timerLeft = 0;
       stopTimer();
       beep("wrong");
+      showQuestionFeedback("wrong", "⏰ TIME OUT!");
     }
+
     render();
   }, 1000);
 }
@@ -270,6 +302,92 @@ function toggleSound() {
   state.soundOn = !state.soundOn;
   $("soundBtn").textContent = state.soundOn ? "🔊 Sonido" : "🔇 Silencio";
   if (state.soundOn) beep("correct");
+}
+
+function clearQuestionFeedback() {
+  const card = $("questionCard");
+  card.classList.remove("correct-flash", "wrong-flash");
+
+  card.querySelectorAll(".feedback-badge, .card-confetti, .wrong-overlay").forEach(el => el.remove());
+}
+
+function showQuestionFeedback(type, message) {
+  const card = $("questionCard");
+  clearQuestionFeedback();
+
+  const badge = document.createElement("div");
+  badge.className = `feedback-badge ${type} show`;
+  badge.textContent = message;
+  card.appendChild(badge);
+
+  if (type === "correct") {
+    card.classList.add("correct-flash");
+    launchCardConfetti(card);
+  } else {
+    card.classList.add("wrong-flash");
+    const overlay = document.createElement("div");
+    overlay.className = "wrong-overlay show";
+    overlay.textContent = "✖";
+    card.appendChild(overlay);
+  }
+
+  setTimeout(() => {
+    badge.remove();
+    card.classList.remove("correct-flash", "wrong-flash");
+    card.querySelectorAll(".wrong-overlay").forEach(el => el.remove());
+  }, 1150);
+}
+
+function launchCardConfetti(card) {
+  const canvas = document.createElement("canvas");
+  canvas.className = "card-confetti";
+  card.appendChild(canvas);
+
+  const ctx = canvas.getContext("2d");
+  const rect = card.getBoundingClientRect();
+  canvas.width = Math.floor(rect.width);
+  canvas.height = Math.floor(rect.height);
+
+  const colors = ["#00d9ff", "#ff3df2", "#ffd166", "#22c55e", "#ffffff"];
+  const pieces = Array.from({ length: 95 }, () => ({
+    x: canvas.width / 2 + (Math.random() - 0.5) * 140,
+    y: canvas.height / 2 + (Math.random() - 0.5) * 40,
+    vx: (Math.random() - 0.5) * 10,
+    vy: -Math.random() * 9 - 3,
+    size: 5 + Math.random() * 8,
+    rot: Math.random() * Math.PI,
+    spin: (Math.random() - 0.5) * 0.32,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    gravity: 0.32 + Math.random() * 0.18
+  }));
+
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    pieces.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += p.gravity;
+      p.rot += p.spin;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.55);
+      ctx.restore();
+    });
+
+    frame++;
+    if (frame < 90) {
+      requestAnimationFrame(draw);
+    } else {
+      canvas.remove();
+    }
+  }
+
+  draw();
 }
 
 function getWinner() {

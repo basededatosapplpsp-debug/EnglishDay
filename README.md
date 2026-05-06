@@ -68,3 +68,20 @@ Abre `data.js` y cambia o agrega preguntas en este formato:
 ## Recomendación para el botón físico
 
 Puedes usar una campana, timbre, pulsadores USB o una app de buzzer en celulares. El host selecciona el equipo con 1 o 2 y marca correcto con C.
+
+
+## Mejoras de esta versión
+
+- El cronómetro inicia automáticamente cuando aparece cada pregunta.
+- El cronómetro suena desde el primer segundo para dar más emoción.
+- Al marcar correcto:
+  - suma punto,
+  - detiene el cronómetro,
+  - muestra “CORRECT!”,
+  - lanza confeti en la tarjeta de pregunta,
+  - reproduce sonido de victoria.
+- Al marcar incorrecto:
+  - detiene el cronómetro,
+  - muestra “WRONG!”,
+  - hace animación de error,
+  - reproduce sonido de error con efecto tipo burla.

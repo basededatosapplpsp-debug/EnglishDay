@@ -422,3 +422,106 @@ button:hover{transform:translateY(-2px);filter:brightness(1.12)}
   .host-controls{grid-template-columns:1fr}
   .round-row{flex-direction:column}
 }
+
+
+/* --- Enhanced feedback effects --- */
+.question-card.correct-flash{
+  animation:correctBurst .85s ease;
+  border-color:rgba(34,197,94,.9);
+  box-shadow:0 0 70px rgba(34,197,94,.55), inset 0 0 40px rgba(34,197,94,.18);
+}
+
+.question-card.wrong-flash{
+  animation:wrongShake .7s ease;
+  border-color:rgba(239,68,68,.95);
+  box-shadow:0 0 70px rgba(239,68,68,.50), inset 0 0 40px rgba(239,68,68,.18);
+}
+
+@keyframes correctBurst{
+  0%{transform:scale(1)}
+  35%{transform:scale(1.035) rotate(.4deg)}
+  65%{transform:scale(.992) rotate(-.25deg)}
+  100%{transform:scale(1)}
+}
+
+@keyframes wrongShake{
+  0%,100%{transform:translateX(0)}
+  15%{transform:translateX(-13px)}
+  30%{transform:translateX(13px)}
+  45%{transform:translateX(-10px)}
+  60%{transform:translateX(10px)}
+  75%{transform:translateX(-5px)}
+}
+
+.feedback-badge{
+  position:absolute;
+  z-index:5;
+  top:22px;
+  left:50%;
+  transform:translateX(-50%) scale(.8);
+  padding:13px 26px;
+  border-radius:999px;
+  font-size:clamp(22px,3.5vw,46px);
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:0;
+  pointer-events:none;
+  text-shadow:0 6px 22px rgba(0,0,0,.35);
+}
+
+.feedback-badge.show{
+  animation:badgePop 1.05s ease forwards;
+}
+
+.feedback-badge.correct{
+  background:linear-gradient(135deg,#16a34a,#22c55e,#a7f3d0);
+  color:white;
+  box-shadow:0 0 48px rgba(34,197,94,.70);
+}
+
+.feedback-badge.wrong{
+  background:linear-gradient(135deg,#7f1d1d,#ef4444,#fb7185);
+  color:white;
+  box-shadow:0 0 48px rgba(239,68,68,.70);
+}
+
+@keyframes badgePop{
+  0%{opacity:0;transform:translateX(-50%) scale(.6) translateY(-18px)}
+  20%{opacity:1;transform:translateX(-50%) scale(1.12) translateY(0)}
+  72%{opacity:1;transform:translateX(-50%) scale(1)}
+  100%{opacity:0;transform:translateX(-50%) scale(.92) translateY(-10px)}
+}
+
+.card-confetti{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:4;
+  pointer-events:none;
+}
+
+.wrong-overlay{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  display:grid;
+  place-items:center;
+  pointer-events:none;
+  background:radial-gradient(circle,rgba(239,68,68,.30),transparent 55%);
+  font-size:clamp(52px,10vw,140px);
+  font-weight:1000;
+  opacity:0;
+}
+
+.wrong-overlay.show{
+  animation:wrongMark 1s ease forwards;
+}
+
+@keyframes wrongMark{
+  0%{opacity:0;transform:scale(.5) rotate(-12deg)}
+  25%{opacity:1;transform:scale(1.12) rotate(5deg)}
+  70%{opacity:1;transform:scale(1) rotate(0)}
+  100%{opacity:0;transform:scale(.88) rotate(0)}
+}
