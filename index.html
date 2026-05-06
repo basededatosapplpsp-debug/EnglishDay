@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Day | Think Fast Challenge</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="stage-glow"></div>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">ENGLISH DAY 2026</p>
+      <h1>Think Fast Challenge</h1>
+    </div>
+
+    <div class="top-actions">
+      <select id="categorySelect" title="Seleccionar categoría"></select>
+      <button id="setupBtn" class="ghost-btn">⚙️ Configurar</button>
+      <button id="soundBtn" class="ghost-btn">🔊 Sonido</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="score-panel glass">
+      <div class="panel-title">
+        <span>Marcador</span>
+        <small id="matchName">Match</small>
+      </div>
+
+      <div id="teamsContainer" class="teams-container"></div>
+
+      <div class="score-actions">
+        <button id="minusBtn" class="small-btn danger">-1</button>
+        <button id="plusBtn" class="small-btn success">+1</button>
+        <button id="resetScoreBtn" class="small-btn">Reset</button>
+      </div>
+
+      <div class="selected-team-card">
+        <small>Equipo seleccionado</small>
+        <strong id="selectedTeamName">Team A</strong>
+        <p>Cuando un equipo toque el botón, selecciónalo y luego marca correcto o incorrecto.</p>
+      </div>
+    </section>
+
+    <section class="game-panel glass">
+      <div class="round-row">
+        <div>
+          <p class="eyebrow">Categoría</p>
+          <h2 id="categoryTitle">Loading...</h2>
+        </div>
+        <div class="timer-wrap">
+          <div id="timer" class="timer">15</div>
+          <button id="startTimerBtn" class="timer-btn">▶ Timer</button>
+        </div>
+      </div>
+
+      <div id="questionCard" class="question-card">
+        <div id="visual" class="visual">⚡</div>
+        <p id="questionType" class="question-type">Vocabulary</p>
+        <h3 id="questionText">Presiona “Iniciar ronda” para comenzar</h3>
+        <div id="answerBox" class="answer-box hidden">
+          <span>Respuesta:</span>
+          <strong id="answerText"></strong>
+        </div>
+      </div>
+
+      <div class="host-controls">
+        <button id="prevBtn" class="control-btn">⬅ Anterior</button>
+        <button id="nextBtn" class="control-btn primary">Iniciar ronda / Siguiente</button>
+        <button id="showAnswerBtn" class="control-btn">👁 Mostrar respuesta</button>
+        <button id="correctBtn" class="control-btn success">✅ Correcto</button>
+        <button id="wrongBtn" class="control-btn danger">❌ Incorrecto</button>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span id="questionProgress">Pregunta 0 de 0</span>
+          <span id="roundTopic">Topic</span>
+        </div>
+        <div class="progress-bar"><div id="progressFill"></div></div>
+      </div>
+    </section>
+
+    <section class="final-panel glass">
+      <div class="panel-title">
+        <span>Final & Ganadores</span>
+        <small>Organiza la final</small>
+      </div>
+
+      <div class="winner-box">
+        <p>Ganador del match actual</p>
+        <strong id="currentWinner">Sin ganador todavía</strong>
+        <button id="addWinnerBtn" class="control-btn gold">Agregar a final</button>
+      </div>
+
+      <div>
+        <h4>Clasificados a la final</h4>
+        <div id="finalistsList" class="finalists-list"></div>
+      </div>
+
+      <button id="finalModeBtn" class="control-btn primary full">🏆 Modo Final</button>
+      <button id="championBtn" class="control-btn gold full">Mostrar campeón</button>
+    </section>
+  </main>
+
+  <section id="championOverlay" class="champion-overlay hidden">
+    <div class="champion-card">
+      <p>🏆 ENGLISH DAY CHAMPION 🏆</p>
+      <h2 id="championName">TEAM</h2>
+      <button id="closeChampionBtn" class="control-btn">Cerrar</button>
+    </div>
+    <canvas id="confetti"></canvas>
+  </section>
+
+  <dialog id="setupDialog" class="setup-dialog">
+    <form method="dialog">
+      <h2>Configurar equipos</h2>
+      <p>Escribe los nombres de los equipos del match seleccionado.</p>
+      <label>Equipo 1</label>
+      <input id="team1Input" type="text" placeholder="Primero A" />
+      <label>Equipo 2</label>
+      <input id="team2Input" type="text" placeholder="Segundo A" />
+      <label>Tiempo por pregunta</label>
+      <input id="timerInput" type="number" min="5" max="60" value="15" />
+      <div class="dialog-actions">
+        <button value="cancel" class="ghost-btn">Cancelar</button>
+        <button id="saveSetupBtn" value="default" class="control-btn primary">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
