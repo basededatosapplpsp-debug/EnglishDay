@@ -75,9 +75,10 @@ function beep(type = "correct") {
     tone(330, 0.24, 0.10, 0.20, "square");
     tone(250, 0.36, 0.14, 0.20, "square");
   } else if (type === "buzz") {
-    tone(440, 0.00, 0.09, 0.28, "square");
-    tone(880, 0.09, 0.12, 0.30, "square");
-    tone(660, 0.21, 0.16, 0.26, "triangle");
+    tone(1200, 0.00, 0.08, 0.34, "square");
+    tone(650, 0.08, 0.08, 0.34, "square");
+    tone(1200, 0.16, 0.08, 0.34, "square");
+    tone(650, 0.24, 0.12, 0.32, "square");
   } else if (type === "tick") {
     tone(900, 0.00, 0.055, 0.11, "square");
   } else if (type === "timerStart") {
@@ -298,7 +299,7 @@ function openBuzzer() {
   state.buzzerOpen = true;
   state.buzzedTeam = null;
   if (buzzerStatus) {
-    buzzerStatus.textContent = "🎯 Esperando buzzer: clic derecho = Equipo 1 | clic izquierdo = Equipo 2";
+    buzzerStatus.textContent = "🎯 BUZZER ACTIVO • DERECHO = EQUIPO 1 • IZQUIERDO = EQUIPO 2";
     buzzerStatus.className = "buzzer-status listening";
     buzzerStatus.classList.remove("hidden");
   }
@@ -332,7 +333,7 @@ function handleMouseBuzzer(e) {
 
   if (buzzerStatus) {
     const clickName = clickedButton === 2 ? "clic derecho" : "clic izquierdo";
-    buzzerStatus.textContent = `🚨 ${team.name} responde primero (${clickName})`;
+    buzzerStatus.textContent = `🚨 TURNO PARA ${team.name} • ${clickName}`;
     buzzerStatus.className = `buzzer-status locked team-${teamIndex + 1}`;
   }
 

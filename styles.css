@@ -574,3 +574,31 @@ button:hover{transform:translateY(-2px);filter:brightness(1.12)}
   45%{transform:translateX(-50%) scale(1.08);opacity:1}
   100%{transform:translateX(-50%) scale(1);opacity:1}
 }
+
+
+/* --- v6: buzzer alert moved to top so it does not cover the question --- */
+.question-card .buzzer-status{
+  top:18px;
+  bottom:auto;
+  width:min(88%, 860px);
+  padding:13px 22px;
+  font-size:clamp(13px,1.6vw,20px);
+  border:2px solid rgba(255,255,255,.35);
+}
+
+.question-card .buzzer-status.listening{
+  background:linear-gradient(90deg,rgba(0,217,255,.95),rgba(37,99,235,.88),rgba(255,61,242,.88));
+  box-shadow:0 0 38px rgba(0,217,255,.45), 0 16px 40px rgba(0,0,0,.35);
+}
+
+.question-card .buzzer-status.locked{
+  font-size:clamp(16px,2.4vw,30px);
+  padding:15px 28px;
+  box-shadow:0 0 55px rgba(255,209,102,.48), 0 16px 45px rgba(0,0,0,.42);
+}
+
+.question-card .buzzer-status.locked::before,
+.question-card .buzzer-status.locked::after{
+  content:"⚡";
+  margin:0 12px;
+}

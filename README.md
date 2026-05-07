@@ -137,3 +137,11 @@ Cuando cualquier equipo presiona su botón de buzzer:
 - Se bloquea el turno.
 - El cronómetro se detiene inmediatamente.
 - La app queda esperando que el presentador marque correcto o incorrecto.
+
+
+## Ajuste v6
+
+- El aviso del equipo que presiona primero ahora aparece arriba en la tarjeta de pregunta.
+- Ya no tapa la pregunta ni la respuesta.
+- El sonido del buzzer ahora es diferente al sonido de correcto, incorrecto y timer.
+- Se mantiene la misma dinámica: primer clic válido bloquea el turno y detiene el cronómetro.
