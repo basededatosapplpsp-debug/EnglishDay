@@ -1488,3 +1488,378 @@ html, body{
     min-height:52vh !important;
   }
 }
+
+
+/* ==========================================================
+   v16 FULLSCREEN FIT ONLY: prevents vertical overflow in F11
+   Logic remains unchanged.
+   ========================================================== */
+
+html,
+body{
+  height:100%;
+  min-height:100%;
+  overflow:hidden !important;
+}
+
+body{
+  height:100vh !important;
+  max-height:100vh !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+/* Header smaller so the app fits in one TV/laptop screen */
+.topbar{
+  flex:0 0 auto !important;
+  padding:10px 18px 6px !important;
+  gap:10px !important;
+}
+
+.eyebrow{
+  font-size:10px !important;
+  letter-spacing:.16em !important;
+}
+
+h1{
+  font-size:clamp(30px,4.5vw,56px) !important;
+  line-height:.88 !important;
+  margin:0 !important;
+}
+
+.top-actions select,
+.top-actions button{
+  padding:9px 12px !important;
+  font-size:13px !important;
+  border-radius:12px !important;
+}
+
+/* App takes remaining height only */
+.app-shell{
+  flex:1 1 auto !important;
+  min-height:0 !important;
+  height:calc(100vh - 88px) !important;
+  max-height:calc(100vh - 88px) !important;
+  overflow:hidden !important;
+
+  padding:6px 18px 12px !important;
+  gap:14px !important;
+
+  grid-template-columns: minmax(215px,280px) minmax(0,1fr) minmax(215px,280px) !important;
+}
+
+.score-panel,
+.game-panel,
+.final-panel{
+  height:100% !important;
+  max-height:100% !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+  padding:14px !important;
+  border-radius:18px !important;
+}
+
+/* Compact side panels */
+.panel-title{
+  margin-bottom:8px !important;
+  font-size:15px !important;
+}
+
+.panel-title small{
+  font-size:10px !important;
+}
+
+.teams-container{
+  gap:10px !important;
+}
+
+.team-card{
+  min-height:112px !important;
+  max-height:130px !important;
+  padding:12px !important;
+}
+
+.team-card::after{
+  inset:7px !important;
+}
+
+.team-name{
+  font-size:18px !important;
+}
+
+.team-score{
+  font-size:54px !important;
+  margin-top:4px !important;
+}
+
+.score-actions{
+  margin:10px 0 !important;
+  gap:8px !important;
+}
+
+.small-btn{
+  padding:10px 8px !important;
+}
+
+.selected-team-card{
+  padding:12px !important;
+  border-radius:16px !important;
+}
+
+.selected-team-card strong{
+  font-size:17px !important;
+}
+
+.selected-team-card p{
+  font-size:11px !important;
+  line-height:1.22 !important;
+}
+
+/* Center panel compact */
+.round-row{
+  min-height:84px !important;
+  grid-template-columns:minmax(210px,1fr) minmax(240px,430px) auto !important;
+  gap:12px !important;
+  align-items:center !important;
+}
+
+.round-row h2{
+  font-size:clamp(28px,3vw,42px) !important;
+  line-height:.98 !important;
+}
+
+.top-buzzer{
+  min-height:58px !important;
+  max-width:430px !important;
+  padding:8px 16px !important;
+  font-size:clamp(14px,1.4vw,22px) !important;
+  border-radius:16px !important;
+}
+
+.timer{
+  width:78px !important;
+  height:78px !important;
+  font-size:36px !important;
+  border-width:5px !important;
+}
+
+.timer-btn{
+  padding:8px 12px !important;
+  font-size:13px !important;
+  border-radius:12px !important;
+}
+
+.question-card{
+  min-height:0 !important;
+  height:calc(100% - 190px) !important;
+  max-height:calc(100% - 190px) !important;
+  margin:10px 0 !important;
+  padding:16px !important;
+  border-radius:22px !important;
+  display:grid !important;
+  align-content:center !important;
+  justify-items:center !important;
+}
+
+.visual{
+  font-size:clamp(58px,6vw,88px) !important;
+}
+
+.question-type{
+  font-size:clamp(13px,1.2vw,17px) !important;
+  margin:6px 0 !important;
+}
+
+.question-card h3{
+  font-size:clamp(28px,3.6vw,54px) !important;
+  line-height:1.02 !important;
+}
+
+.answer-box{
+  margin-top:12px !important;
+  padding:10px 16px !important;
+  font-size:18px !important;
+}
+
+.host-controls{
+  gap:8px !important;
+}
+
+.control-btn{
+  padding:10px 10px !important;
+  font-size:13px !important;
+  border-radius:12px !important;
+}
+
+.progress-wrap{
+  margin-top:8px !important;
+}
+
+.progress-label{
+  font-size:12px !important;
+  margin-bottom:5px !important;
+}
+
+.progress-bar{
+  height:10px !important;
+}
+
+/* Compact final panel */
+.winner-box{
+  padding:12px !important;
+  margin-bottom:12px !important;
+}
+
+.winner-box strong{
+  font-size:22px !important;
+}
+
+.winner-box p{
+  font-size:12px !important;
+}
+
+.final-panel h4{
+  font-size:15px !important;
+  margin-bottom:8px !important;
+}
+
+.finalist{
+  padding:9px 10px !important;
+  font-size:13px !important;
+}
+
+.full{
+  margin-top:8px !important;
+}
+
+/* Main laptop / projector widths */
+@media (max-width:1366px){
+  .app-shell{
+    grid-template-columns: minmax(200px,250px) minmax(0,1fr) minmax(200px,250px) !important;
+    gap:12px !important;
+    padding-left:14px !important;
+    padding-right:14px !important;
+  }
+
+  .score-panel,
+  .game-panel,
+  .final-panel{
+    padding:12px !important;
+  }
+
+  .round-row{
+    grid-template-columns:minmax(170px,1fr) minmax(210px,360px) auto !important;
+  }
+
+  .top-buzzer{
+    max-width:360px !important;
+    min-height:54px !important;
+  }
+
+  .team-card{
+    min-height:100px !important;
+  }
+
+  .team-score{
+    font-size:48px !important;
+  }
+
+  .question-card{
+    height:calc(100% - 176px) !important;
+    max-height:calc(100% - 176px) !important;
+  }
+
+  .control-btn{
+    padding:9px 8px !important;
+    font-size:12px !important;
+  }
+}
+
+/* Short-height screens: even tighter */
+@media (max-height:760px){
+  .topbar{
+    padding:6px 18px 4px !important;
+  }
+
+  h1{
+    font-size:clamp(28px,4vw,48px) !important;
+  }
+
+  .app-shell{
+    height:calc(100vh - 68px) !important;
+    max-height:calc(100vh - 68px) !important;
+  }
+
+  .round-row{
+    min-height:72px !important;
+  }
+
+  .question-card{
+    height:calc(100% - 158px) !important;
+    max-height:calc(100% - 158px) !important;
+    margin:8px 0 !important;
+  }
+
+  .visual{
+    font-size:clamp(46px,5vw,72px) !important;
+  }
+
+  .question-card h3{
+    font-size:clamp(24px,3.3vw,46px) !important;
+  }
+
+  .timer{
+    width:68px !important;
+    height:68px !important;
+    font-size:32px !important;
+  }
+
+  .timer-btn{
+    padding:6px 10px !important;
+  }
+
+  .team-card{
+    min-height:88px !important;
+  }
+
+  .team-score{
+    font-size:42px !important;
+  }
+
+  .selected-team-card{
+    padding:9px !important;
+  }
+}
+
+/* If screen is too narrow, allow vertical layout instead of broken layout */
+@media (max-width:980px){
+  html,
+  body{
+    overflow:auto !important;
+    height:auto !important;
+    max-height:none !important;
+  }
+
+  body{
+    display:block !important;
+  }
+
+  .app-shell{
+    height:auto !important;
+    max-height:none !important;
+    overflow:visible !important;
+  }
+
+  .score-panel,
+  .game-panel,
+  .final-panel{
+    height:auto !important;
+    max-height:none !important;
+  }
+
+  .question-card{
+    height:auto !important;
+    max-height:none !important;
+    min-height:320px !important;
+  }
+}

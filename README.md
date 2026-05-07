@@ -222,3 +222,11 @@ Características:
 - Solo se corrigió el responsive/adaptación de pantalla.
 - La interfaz ahora se acomoda mejor en laptops, televisores, proyectores, tablets y pantallas pequeñas.
 - No se modificó la lógica del juego, preguntas, buzzer, puntajes, sonidos ni finales.
+
+
+## Ajuste v16
+
+- Solo se corrigió el ajuste de pantalla completa.
+- En F11 debe caber en una sola vista en laptop, TV o proyector.
+- Se redujeron proporciones, espacios y alturas para evitar scroll vertical.
+- No se modificó lógica, preguntas, buzzer, puntajes, sonidos ni finales.
