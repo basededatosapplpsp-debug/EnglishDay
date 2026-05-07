@@ -1863,3 +1863,50 @@ h1{
     min-height:320px !important;
   }
 }
+
+
+/* ==========================================================
+   v18 BUZZER SPACE FIX ONLY
+   Keeps the top turn alert from pushing the layout down.
+   Logic remains unchanged.
+   ========================================================== */
+
+.top-buzzer{
+  flex-shrink:0 !important;
+}
+
+/* Instead of display:none, reserve the same space invisibly.
+   This prevents the question/progress area from jumping down
+   when "TURNO PARA..." appears. */
+.top-buzzer.hidden{
+  display:flex !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+
+/* When active, show it in the same reserved space. */
+.top-buzzer:not(.hidden){
+  visibility:visible !important;
+  opacity:1 !important;
+}
+
+/* Slightly tighter center area so the progress line remains visible. */
+.question-card{
+  height:calc(100% - 238px) !important;
+  max-height:calc(100% - 238px) !important;
+}
+
+@media (max-width:1366px){
+  .question-card{
+    height:calc(100% - 218px) !important;
+    max-height:calc(100% - 218px) !important;
+  }
+}
+
+@media (max-height:760px){
+  .question-card{
+    height:calc(100% - 202px) !important;
+    max-height:calc(100% - 202px) !important;
+  }
+}

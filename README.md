@@ -230,3 +230,11 @@ Características:
 - En F11 debe caber en una sola vista en laptop, TV o proyector.
 - Se redujeron proporciones, espacios y alturas para evitar scroll vertical.
 - No se modificó lógica, preguntas, buzzer, puntajes, sonidos ni finales.
+
+
+## Ajuste v18
+
+- Solo se corrigió el comportamiento visual del aviso “TURNO PARA...”.
+- Ahora el espacio del aviso queda reservado aunque esté oculto.
+- Cuando aparece el aviso, ya no empuja la pregunta, botones ni barra de progreso hacia abajo.
+- No se modificó lógica, preguntas, buzzer, puntajes, sonidos ni finales.
