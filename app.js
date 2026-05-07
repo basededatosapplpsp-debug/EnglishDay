@@ -298,7 +298,7 @@ function openBuzzer() {
   state.buzzerOpen = true;
   state.buzzedTeam = null;
   if (buzzerStatus) {
-    buzzerStatus.textContent = "🎯 Esperando buzzer: clic izquierdo = Equipo 1 | clic derecho = Equipo 2";
+    buzzerStatus.textContent = "🎯 Esperando buzzer: clic derecho = Equipo 1 | clic izquierdo = Equipo 2";
     buzzerStatus.className = "buzzer-status listening";
     buzzerStatus.classList.remove("hidden");
   }
@@ -321,7 +321,7 @@ function handleMouseBuzzer(e) {
   if (!state.buzzerOpen || state.buzzedTeam !== null) return;
   if (clickedButton !== 0 && clickedButton !== 2) return;
 
-  const teamIndex = clickedButton === 0 ? 0 : 1;
+  const teamIndex = clickedButton === 2 ? 0 : 1;
   const team = state.teams[teamIndex];
   if (!team) return;
 
@@ -330,7 +330,8 @@ function handleMouseBuzzer(e) {
   state.buzzerOpen = false;
 
   if (buzzerStatus) {
-    buzzerStatus.textContent = `🚨 ${team.name} responde primero`;
+    const clickName = clickedButton === 2 ? "clic derecho" : "clic izquierdo";
+    buzzerStatus.textContent = `🚨 ${team.name} responde primero (${clickName})`;
     buzzerStatus.className = `buzzer-status locked team-${teamIndex + 1}`;
   }
 

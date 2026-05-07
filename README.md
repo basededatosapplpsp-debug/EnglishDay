@@ -101,3 +101,29 @@ Notas:
 - El clic derecho del navegador está bloqueado para que funcione como buzzer.
 - El host todavía puede usar los botones de la interfaz normalmente.
 - Para mayor comodidad, conecta dos pulsadores físicos configurados como clic izquierdo y clic derecho del mouse.
+
+
+## Ajuste v4 de buzzers
+
+Asignación actual:
+
+- Jugador / Equipo 1: clic derecho.
+- Jugador / Equipo 2: clic izquierdo.
+
+Importante sobre dos mouse:
+Los navegadores web normales no permiten distinguir qué mouse físico hizo el clic. Si conectas dos mouse, Chrome/Edge/Firefox los tratan como un mismo puntero. Por eso no es posible seleccionar “mouse de control” y “mouse de jugadores” desde esta app HTML estándar.
+
+Solución recomendada para el evento:
+- Usa el mouse del profesor solo sobre botones de la interfaz. Esos clics están ignorados como buzzer.
+- Usa el mouse de los jugadores para presionar derecho o izquierdo cuando aparece la pregunta.
+- Evita hacer clic con el mouse del profesor en el área grande de la pregunta mientras el buzzer esté esperando.
+- Para controlar sin riesgo, usa el teclado:
+  - Flecha derecha: siguiente pregunta.
+  - Flecha izquierda: pregunta anterior.
+  - C: correcto.
+  - X: incorrecto.
+  - T: iniciar timer.
+  - Barra espaciadora: mostrar respuesta.
+  - 1 y 2: seleccionar equipo manualmente.
+
+Para una versión con identificación real de controles separados, lo ideal sería usar teclados separados, controles tipo gamepad, pulsadores USB que envíen teclas diferentes, o un sistema especializado de buzzer.
