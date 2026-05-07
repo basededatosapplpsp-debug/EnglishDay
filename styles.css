@@ -602,3 +602,51 @@ button:hover{transform:translateY(-2px);filter:brightness(1.12)}
   content:"⚡";
   margin:0 12px;
 }
+
+
+/* --- v7: buzzer alert in header between versus title and timer --- */
+.round-row{
+  align-items:center;
+}
+
+.top-buzzer{
+  position:static !important;
+  transform:none !important;
+  width:min(48vw, 620px) !important;
+  max-width:620px;
+  margin:0 auto;
+  bottom:auto !important;
+  top:auto !important;
+  left:auto !important;
+  padding:14px 22px;
+  border-radius:999px;
+  text-align:center;
+  font-size:clamp(15px,1.7vw,26px);
+  line-height:1.1;
+}
+
+.top-buzzer.listening{
+  background:linear-gradient(90deg,rgba(0,217,255,.95),rgba(37,99,235,.88),rgba(255,61,242,.88));
+  box-shadow:0 0 38px rgba(0,217,255,.45), 0 16px 40px rgba(0,0,0,.35);
+}
+
+.top-buzzer.locked{
+  background:linear-gradient(90deg,#c9186a,#ff3df2,#ff6fd8);
+  color:#ffffff;
+  border:2px solid rgba(255,255,255,.38);
+  box-shadow:0 0 55px rgba(255,61,242,.45), 0 16px 45px rgba(0,0,0,.42);
+  font-weight:1000;
+}
+
+.top-buzzer.locked::before,
+.top-buzzer.locked::after{
+  content:"⚡";
+  margin:0 12px;
+}
+
+@media (max-width:1100px){
+  .top-buzzer{
+    width:100% !important;
+    margin:12px 0;
+  }
+}

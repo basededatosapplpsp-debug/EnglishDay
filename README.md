@@ -145,3 +145,10 @@ Cuando cualquier equipo presiona su botón de buzzer:
 - Ya no tapa la pregunta ni la respuesta.
 - El sonido del buzzer ahora es diferente al sonido de correcto, incorrecto y timer.
 - Se mantiene la misma dinámica: primer clic válido bloquea el turno y detiene el cronómetro.
+
+
+## Ajuste v7
+
+- El aviso del turno ahora aparece en el encabezado, entre el nombre del versus y el cronómetro.
+- Se quitó el texto “clic izquierdo” o “clic derecho” del aviso.
+- El aviso ahora solo muestra el equipo que tiene el turno para responder.

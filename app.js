@@ -332,8 +332,7 @@ function handleMouseBuzzer(e) {
   stopTimer();
 
   if (buzzerStatus) {
-    const clickName = clickedButton === 2 ? "clic derecho" : "clic izquierdo";
-    buzzerStatus.textContent = `🚨 TURNO PARA ${team.name} • ${clickName}`;
+    buzzerStatus.textContent = `🚨 TURNO PARA ${team.name}`;
     buzzerStatus.className = `buzzer-status locked team-${teamIndex + 1}`;
   }
 
