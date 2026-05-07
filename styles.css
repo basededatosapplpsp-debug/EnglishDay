@@ -1651,8 +1651,8 @@ h1{
 
 .question-card{
   min-height:0 !important;
-  height:calc(100% - 190px) !important;
-  max-height:calc(100% - 190px) !important;
+  height:calc(100% - 230px) !important;
+  max-height:calc(100% - 230px) !important;
   margin:10px 0 !important;
   padding:16px !important;
   border-radius:22px !important;
@@ -1765,8 +1765,8 @@ h1{
   }
 
   .question-card{
-    height:calc(100% - 176px) !important;
-    max-height:calc(100% - 176px) !important;
+    height:calc(100% - 210px) !important;
+    max-height:calc(100% - 210px) !important;
   }
 
   .control-btn{
@@ -1795,8 +1795,8 @@ h1{
   }
 
   .question-card{
-    height:calc(100% - 158px) !important;
-    max-height:calc(100% - 158px) !important;
+    height:calc(100% - 195px) !important;
+    max-height:calc(100% - 195px) !important;
     margin:8px 0 !important;
   }
 
