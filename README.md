@@ -160,3 +160,11 @@ Cuando cualquier equipo presiona su botón de buzzer:
   - el título del versus
   - y el cronómetro/timer.
 - Ya no aparece dentro o debajo del panel de pregunta.
+
+
+## Ajuste v10
+
+- Se quitó el aviso inicial de “BUZZER ACTIVO / DERECHO / IZQUIERDO”.
+- El buzzer sigue funcionando igual.
+- Cuando un equipo presiona primero, sí aparece arriba “TURNO PARA ...”.
+- No se modificó la lógica de puntaje, timer, equipos, final ni sonidos.

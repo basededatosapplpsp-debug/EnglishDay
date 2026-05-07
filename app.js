@@ -299,9 +299,9 @@ function openBuzzer() {
   state.buzzerOpen = true;
   state.buzzedTeam = null;
   if (buzzerStatus) {
-    buzzerStatus.textContent = "🎯 BUZZER ACTIVO • DERECHO = EQUIPO 1 • IZQUIERDO = EQUIPO 2";
-    buzzerStatus.className = "top-buzzer";
-    buzzerStatus.classList.remove("hidden");
+    buzzerStatus.textContent = "";
+    buzzerStatus.className = "top-buzzer hidden";
+    buzzerStatus.classList.add("hidden");
   }
 }
 
