@@ -195,4 +195,48 @@ const GAME_DATA = [
       { type:"Final", visual:"🏆", q:"Presiona Mostrar campeón al terminar.", a:"Aparece la pantalla del ganador." }
     ]
   }
+  ,
+  {
+    id: "mega-final",
+    title: "Mega Final",
+    match: "Mega Final",
+    defaultTeams: ["Equipo 1", "Equipo 2"],
+    topics: ["Mixed Topics"],
+    questions: [
+      { type:"Weather", visual:"🌩️", q:"What weather has thunder and lightning?", a:"Stormy" },
+      { type:"Daily Routines", visual:"🚿", q:"What do you do before going to school?", a:"Take a shower" },
+      { type:"Jobs & Professions", visual:"🦷", q:"Who takes care of teeth?", a:"Dentist" },
+      { type:"Environment", visual:"🌱", q:"What should we plant to help the Earth?", a:"Trees / Plants" },
+      { type:"Travel & Culture", visual:"🛫", q:"What place do airplanes use?", a:"Airport" }
+    ]
+  },
+  {
+    id: "ultra-final",
+    title: "Ultra Final",
+    match: "Ultra Final",
+    defaultTeams: ["Equipo 1", "Equipo 2"],
+    topics: ["Mixed Topics"],
+    questions: [
+      { type:"Places in the City", visual:"🏞️", q:"Where can children play outside?", a:"Park" },
+      { type:"Hobbies", visual:"🎤", q:"What hobby uses a microphone?", a:"Singing" },
+      { type:"Feelings & Emotions", visual:"😲", q:"How do you feel when something is unexpected?", a:"Surprised" },
+      { type:"Environment", visual:"🗑️", q:"What should you do with trash?", a:"Recycle / Throw it away properly" },
+      { type:"Travel & Culture", visual:"📸", q:"What do tourists take to remember places?", a:"Photos / Pictures" }
+    ]
+  },
+  {
+    id: "hiper-final",
+    title: "Hiper Final",
+    match: "Hiper Final",
+    defaultTeams: ["Equipo 1", "Equipo 2"],
+    topics: ["Mixed Topics"],
+    questions: [
+      { type:"Weather", visual:"🌡️", q:"What weather is very hot?", a:"Hot / Sunny" },
+      { type:"Daily Routines", visual:"📚", q:"What do students do in class?", a:"Study / Learn" },
+      { type:"Jobs & Professions", visual:"🏗️", q:"Who builds houses and buildings?", a:"Construction worker / Builder" },
+      { type:"Feelings & Emotions", visual:"😍", q:"How do you feel when you really like something?", a:"Excited / Happy" },
+      { type:"Travel & Culture", visual:"🚆", q:"What transportation travels on rails?", a:"Train" }
+    ]
+  }
 ];
+

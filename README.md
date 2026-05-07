@@ -200,3 +200,18 @@ Cuando cualquier equipo presiona su botón de buzzer:
 - La final toma las preguntas según la categoría activa antes de entrar a “Modo Final”.
   Ejemplo: si estabas en “Sexto A vs Sexto B”, la final usará 5 preguntas de Weather / Places in the City.
 - No se modificó el diseño ni la lógica de puntaje, buzzer, sonidos o ganador.
+
+
+## Ajuste v14
+
+Se agregaron tres categorías especiales para desempate:
+
+- Mega Final
+- Ultra Final
+- Hiper Final
+
+Características:
+- 5 preguntas cada una.
+- Mezcla de temas desde Sexto hasta Once.
+- Ninguna pregunta se repite entre las tres categorías.
+- Funcionan igual que las demás categorías desde el combo principal.
