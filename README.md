@@ -179,3 +179,15 @@ Cuando cualquier equipo presiona su botón de buzzer:
 - Ese aviso central desaparece rápidamente.
 - Después queda el aviso superior indicando quién responde.
 - No se modificó la lógica de preguntas, puntaje, timer, sonidos ni final.
+
+
+## Ajuste v12
+
+- Cambio solo de diseño visual.
+- Interfaz más parecida a concurso de TV:
+  - fondo oscuro/neón,
+  - tarjetas de equipos azul y rojo,
+  - aviso superior estilo panel luminoso,
+  - tarjeta de pregunta tipo escenario,
+  - botones y timer más llamativos.
+- No se cambió la lógica de preguntas, buzzer, puntaje, timer, final ni sonidos.

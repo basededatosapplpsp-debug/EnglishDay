@@ -892,3 +892,339 @@ button:hover{transform:translateY(-2px);filter:brightness(1.12)}
   55%{transform:scale(1.08) rotate(1deg); opacity:1}
   100%{transform:scale(1) rotate(0); opacity:1}
 }
+
+
+/* ==========================================================
+   v12 DESIGN ONLY: TV show neon interface
+   Logic remains unchanged.
+   ========================================================== */
+
+body{
+  background:
+    radial-gradient(circle at 12% 6%, rgba(0,217,255,.18), transparent 22%),
+    radial-gradient(circle at 88% 12%, rgba(255,61,242,.18), transparent 26%),
+    radial-gradient(circle at 52% 92%, rgba(145,68,255,.22), transparent 30%),
+    linear-gradient(135deg,#020512 0%,#030817 45%,#12051f 100%) !important;
+}
+
+.topbar{
+  padding:24px 36px 18px !important;
+}
+
+h1{
+  font-size:clamp(42px,5.6vw,76px) !important;
+  letter-spacing:.035em;
+  color:#fff;
+  text-shadow:
+    0 0 10px rgba(255,255,255,.30),
+    0 0 28px rgba(0,217,255,.72),
+    0 0 50px rgba(0,217,255,.28) !important;
+}
+
+.app-shell{
+  grid-template-columns:320px minmax(620px,1fr) 320px !important;
+  gap:20px !important;
+  padding:0 24px 30px !important;
+}
+
+.glass{
+  background:rgba(3,8,24,.72) !important;
+  border:1px solid rgba(180,200,255,.22) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.03),
+    0 30px 80px rgba(0,0,0,.48) !important;
+  backdrop-filter:blur(16px);
+}
+
+.score-panel,
+.final-panel{
+  border-radius:22px !important;
+}
+
+.game-panel{
+  border-radius:22px !important;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(0,217,255,.12), transparent 26%),
+    radial-gradient(circle at 86% 24%, rgba(255,61,242,.10), transparent 28%),
+    rgba(3,8,24,.74) !important;
+}
+
+.panel-title span,
+.final-panel h4{
+  color:#fff;
+  text-shadow:0 0 16px rgba(255,255,255,.16);
+}
+
+.panel-title small{
+  color:#8fb8ff !important;
+}
+
+/* Team score cards: blue/red neon, like TV quiz panels */
+.team-card{
+  min-height:150px;
+  border-radius:20px !important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.05),rgba(0,0,0,.32)),
+    rgba(5,12,28,.88) !important;
+  border:2px solid rgba(255,255,255,.12) !important;
+  box-shadow:
+    inset 0 0 30px rgba(255,255,255,.035),
+    0 18px 34px rgba(0,0,0,.38) !important;
+}
+
+.team-card::before{
+  width:100% !important;
+  height:100% !important;
+  background:none !important;
+  border-radius:18px;
+  pointer-events:none;
+}
+
+.team-card:nth-child(1){
+  border-color:#008cff !important;
+  box-shadow:
+    inset 0 0 25px rgba(0,140,255,.16),
+    0 0 24px rgba(0,140,255,.38) !important;
+}
+
+.team-card:nth-child(1)::after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border-radius:16px;
+  border:2px dotted rgba(0,140,255,.65);
+  pointer-events:none;
+}
+
+.team-card:nth-child(2){
+  border-color:#ff2d2d !important;
+  box-shadow:
+    inset 0 0 25px rgba(255,45,45,.16),
+    0 0 24px rgba(255,45,45,.38) !important;
+}
+
+.team-card:nth-child(2)::after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border-radius:16px;
+  border:2px dotted rgba(255,45,45,.65);
+  pointer-events:none;
+}
+
+.team-card.selected{
+  border-color:#ffd166 !important;
+  box-shadow:
+    inset 0 0 28px rgba(255,209,102,.18),
+    0 0 34px rgba(255,209,102,.58) !important;
+}
+
+.team-name{
+  position:relative;
+  z-index:2;
+  font-size:22px !important;
+  letter-spacing:.03em;
+}
+
+.team-score{
+  position:relative;
+  z-index:2;
+  font-size:68px !important;
+  color:#fff;
+  text-shadow:
+    0 5px 18px rgba(0,0,0,.55),
+    0 0 22px rgba(255,255,255,.22);
+}
+
+/* Left current turn guide */
+.selected-team-card{
+  background:
+    radial-gradient(circle at 50% 80%, rgba(0,217,255,.08), transparent 42%),
+    rgba(0,0,0,.38) !important;
+  border:1px solid rgba(0,217,255,.32);
+  border-radius:20px !important;
+}
+
+.selected-team-card small{
+  color:#00d9ff !important;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+/* Header versus area */
+.round-row{
+  min-height:132px;
+}
+
+.round-row h2{
+  font-size:clamp(34px,3.2vw,52px) !important;
+  letter-spacing:.01em;
+}
+
+.round-row h2::first-letter{
+  color:#1e90ff;
+}
+
+/* Top buzzer: black/gold/blue TV alert */
+.top-buzzer{
+  min-width:410px !important;
+  max-width:600px !important;
+  min-height:92px !important;
+  border-radius:20px !important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.52)),
+    rgba(5,5,12,.92) !important;
+  color:#fff !important;
+  border:2px solid #ffd166 !important;
+  font-size:clamp(18px,1.65vw,28px) !important;
+  line-height:1.05 !important;
+  box-shadow:
+    0 0 4px rgba(255,209,102,.85),
+    0 0 30px rgba(255,209,102,.45),
+    0 0 54px rgba(0,217,255,.28),
+    inset 0 0 24px rgba(255,209,102,.08) !important;
+}
+
+.top-buzzer.team-1{
+  border-color:#ffd166 !important;
+  color:#fff !important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.56)),
+    rgba(4,9,22,.94) !important;
+}
+
+.top-buzzer.team-2{
+  border-color:#ffd166 !important;
+  color:#fff !important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.56)),
+    rgba(4,9,22,.94) !important;
+}
+
+.top-buzzer.team-1{
+  text-shadow:0 0 18px rgba(0,140,255,.9);
+}
+
+.top-buzzer.team-2{
+  text-shadow:0 0 18px rgba(255,45,45,.9);
+}
+
+/* Timer */
+.timer{
+  width:116px !important;
+  height:116px !important;
+  border:6px solid #00d9ff !important;
+  background:rgba(0,0,0,.22);
+  font-size:50px !important;
+  box-shadow:
+    0 0 28px rgba(0,217,255,.70),
+    inset 0 0 26px rgba(0,217,255,.12) !important;
+}
+
+.timer-btn{
+  background:rgba(255,255,255,.16) !important;
+}
+
+/* Question card: stage look */
+.question-card{
+  min-height:500px !important;
+  border-radius:26px !important;
+  border:1px solid rgba(255,61,242,.52) !important;
+  background:
+    radial-gradient(circle at 50% 96%, rgba(255,61,242,.32), transparent 20%),
+    radial-gradient(circle at 50% 20%, rgba(0,100,255,.28), transparent 18%),
+    radial-gradient(circle at 10% 50%, rgba(0,140,255,.15), transparent 26%),
+    radial-gradient(circle at 88% 44%, rgba(255,61,242,.13), transparent 26%),
+    linear-gradient(135deg,rgba(0,12,42,.92),rgba(10,0,36,.95)) !important;
+  box-shadow:
+    inset 0 0 90px rgba(0,0,0,.38),
+    0 0 22px rgba(255,61,242,.18) !important;
+}
+
+.question-card::before{
+  content:"";
+  position:absolute;
+  left:12%;
+  right:12%;
+  bottom:28px;
+  height:80px;
+  border-radius:50%;
+  background:radial-gradient(ellipse at center, rgba(255,61,242,.42), rgba(80,0,180,.18) 48%, transparent 72%);
+  filter:blur(2px);
+  opacity:.7;
+}
+
+.visual{
+  font-size:110px !important;
+  z-index:2;
+}
+
+.question-type,
+.question-card h3,
+.answer-box{
+  position:relative;
+  z-index:2;
+}
+
+.question-type{
+  color:#ffd21f !important;
+  font-size:20px !important;
+  text-shadow:0 0 18px rgba(255,210,31,.25);
+}
+
+.question-card h3{
+  font-size:clamp(44px,4.6vw,72px) !important;
+  text-shadow:
+    0 7px 18px rgba(0,0,0,.55),
+    0 0 18px rgba(255,255,255,.14);
+}
+
+/* Buttons */
+.control-btn,
+.ghost-btn,
+.small-btn{
+  border-radius:14px !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.28) !important;
+}
+
+#nextBtn{
+  background:linear-gradient(135deg,#0069ff,#00d9ff) !important;
+}
+
+#correctBtn{
+  background:linear-gradient(135deg,#008f35,#22c55e) !important;
+}
+
+#wrongBtn{
+  background:linear-gradient(135deg,#b91c1c,#ef4444) !important;
+}
+
+.gold{
+  background:linear-gradient(135deg,#f59e0b,#ffd21f) !important;
+}
+
+/* Final panel */
+.winner-box{
+  background:rgba(0,0,0,.36) !important;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.finalist{
+  background:rgba(255,255,255,.13) !important;
+}
+
+/* Fast center flash keeps team colors */
+.buzz-center-flash.team-1 .buzz-center-card{
+  background:linear-gradient(135deg,#005bea,#00d9ff,#005bea) !important;
+}
+
+.buzz-center-flash.team-2 .buzz-center-card{
+  background:linear-gradient(135deg,#b4001c,#ff2d2d,#ff6b6b) !important;
+}
+
+@media (max-width:1200px){
+  .app-shell{
+    grid-template-columns:1fr !important;
+  }
+}
