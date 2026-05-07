@@ -238,3 +238,10 @@ Características:
 - Ahora el espacio del aviso queda reservado aunque esté oculto.
 - Cuando aparece el aviso, ya no empuja la pregunta, botones ni barra de progreso hacia abajo.
 - No se modificó lógica, preguntas, buzzer, puntajes, sonidos ni finales.
+
+
+## Ajuste v19
+
+- Solo se dio más espacio a la parte inferior del panel central.
+- La barra de progreso y el texto de pregunta ya no deben verse cortados.
+- No se modificó lógica, preguntas, buzzer, puntajes, sonidos ni finales.

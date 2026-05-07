@@ -1910,3 +1910,55 @@ h1{
     max-height:calc(100% - 202px) !important;
   }
 }
+
+
+/* ==========================================================
+   v19 BOTTOM PROGRESS VISIBILITY FIX ONLY
+   Gives the progress area a little more room.
+   Logic remains unchanged.
+   ========================================================== */
+
+.game-panel{
+  padding-bottom:22px !important;
+}
+
+.question-card{
+  height:calc(100% - 252px) !important;
+  max-height:calc(100% - 252px) !important;
+  margin-bottom:8px !important;
+}
+
+.host-controls{
+  margin-bottom:8px !important;
+}
+
+.progress-wrap{
+  margin-top:4px !important;
+  padding-bottom:4px !important;
+}
+
+.progress-label{
+  line-height:1.1 !important;
+}
+
+@media (max-width:1366px){
+  .question-card{
+    height:calc(100% - 232px) !important;
+    max-height:calc(100% - 232px) !important;
+  }
+
+  .game-panel{
+    padding-bottom:20px !important;
+  }
+}
+
+@media (max-height:760px){
+  .question-card{
+    height:calc(100% - 216px) !important;
+    max-height:calc(100% - 216px) !important;
+  }
+
+  .host-controls{
+    margin-bottom:6px !important;
+  }
+}
