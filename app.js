@@ -300,7 +300,7 @@ function openBuzzer() {
   state.buzzedTeam = null;
   if (buzzerStatus) {
     buzzerStatus.textContent = "🎯 BUZZER ACTIVO • DERECHO = EQUIPO 1 • IZQUIERDO = EQUIPO 2";
-    buzzerStatus.className = "buzzer-status listening";
+    buzzerStatus.className = "top-buzzer";
     buzzerStatus.classList.remove("hidden");
   }
 }
@@ -333,7 +333,7 @@ function handleMouseBuzzer(e) {
 
   if (buzzerStatus) {
     buzzerStatus.textContent = `🚨 TURNO PARA ${team.name}`;
-    buzzerStatus.className = `buzzer-status locked team-${teamIndex + 1}`;
+    buzzerStatus.className = "top-buzzer";
   }
 
   beep("buzz");

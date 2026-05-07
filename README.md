@@ -152,3 +152,11 @@ Cuando cualquier equipo presiona su botón de buzzer:
 - El aviso del turno ahora aparece en el encabezado, entre el nombre del versus y el cronómetro.
 - Se quitó el texto “clic izquierdo” o “clic derecho” del aviso.
 - El aviso ahora solo muestra el equipo que tiene el turno para responder.
+
+
+## Ajuste v8
+
+- El aviso del turno ahora queda exactamente entre:
+  - el título del versus
+  - y el cronómetro/timer.
+- Ya no aparece dentro o debajo del panel de pregunta.
