@@ -127,3 +127,13 @@ Solución recomendada para el evento:
   - 1 y 2: seleccionar equipo manualmente.
 
 Para una versión con identificación real de controles separados, lo ideal sería usar teclados separados, controles tipo gamepad, pulsadores USB que envíen teclas diferentes, o un sistema especializado de buzzer.
+
+
+## Ajuste v5
+
+Cuando cualquier equipo presiona su botón de buzzer:
+
+- Se selecciona automáticamente el equipo que presionó primero.
+- Se bloquea el turno.
+- El cronómetro se detiene inmediatamente.
+- La app queda esperando que el presentador marque correcto o incorrecto.

@@ -328,6 +328,7 @@ function handleMouseBuzzer(e) {
   state.selectedTeam = teamIndex;
   state.buzzedTeam = teamIndex;
   state.buzzerOpen = false;
+  stopTimer();
 
   if (buzzerStatus) {
     const clickName = clickedButton === 2 ? "clic derecho" : "clic izquierdo";
