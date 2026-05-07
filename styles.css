@@ -792,3 +792,103 @@ button:hover{transform:translateY(-2px);filter:brightness(1.12)}
     width:100% !important;
   }
 }
+
+
+/* --- v11: team colors for buzzer alert and fast center flash --- */
+.top-buzzer.team-1{
+  background:linear-gradient(90deg,#0284c7,#00d9ff,#2563eb) !important;
+  box-shadow:0 0 45px rgba(0,217,255,.55), 0 18px 45px rgba(0,0,0,.35) !important;
+}
+
+.top-buzzer.team-2{
+  background:linear-gradient(90deg,#c9186a,#ff3df2,#ff6fd8) !important;
+  box-shadow:0 0 45px rgba(255,61,242,.55), 0 18px 45px rgba(0,0,0,.35) !important;
+}
+
+.team-card:nth-child(1){
+  border-color:rgba(0,217,255,.75);
+  box-shadow:0 0 28px rgba(0,217,255,.18);
+}
+
+.team-card:nth-child(2){
+  border-color:rgba(255,61,242,.75);
+  box-shadow:0 0 28px rgba(255,61,242,.18);
+}
+
+.buzz-center-flash{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  pointer-events:none;
+  background:rgba(0,0,0,.18);
+  animation:buzzFlashIn .18s ease-out forwards;
+}
+
+.buzz-center-flash.hide{
+  animation:buzzFlashOut .35s ease-in forwards;
+}
+
+.buzz-center-card{
+  width:min(760px,88vw);
+  min-height:240px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  text-align:center;
+  border-radius:44px;
+  border:3px solid rgba(255,255,255,.42);
+  box-shadow:0 0 95px rgba(255,255,255,.25), 0 35px 100px rgba(0,0,0,.55);
+  text-transform:uppercase;
+  transform:scale(.82);
+  animation:buzzCardPop .45s cubic-bezier(.18,1.35,.32,1) forwards;
+}
+
+.buzz-center-flash.team-1 .buzz-center-card{
+  background:linear-gradient(135deg,#0284c7,#00d9ff,#2563eb);
+  box-shadow:0 0 110px rgba(0,217,255,.72), 0 35px 100px rgba(0,0,0,.55);
+}
+
+.buzz-center-flash.team-2 .buzz-center-card{
+  background:linear-gradient(135deg,#c9186a,#ff3df2,#ff6fd8);
+  box-shadow:0 0 110px rgba(255,61,242,.72), 0 35px 100px rgba(0,0,0,.55);
+}
+
+.buzz-center-card span{
+  font-size:clamp(48px,7vw,96px);
+  line-height:1;
+}
+
+.buzz-center-card strong{
+  font-size:clamp(44px,7vw,108px);
+  line-height:.9;
+  font-weight:1000;
+  color:#fff;
+  text-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.buzz-center-card small{
+  font-size:clamp(18px,2.2vw,34px);
+  font-weight:1000;
+  color:#fff;
+  opacity:.95;
+}
+
+@keyframes buzzFlashIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes buzzFlashOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+
+@keyframes buzzCardPop{
+  0%{transform:scale(.72) rotate(-2deg); opacity:0}
+  55%{transform:scale(1.08) rotate(1deg); opacity:1}
+  100%{transform:scale(1) rotate(0); opacity:1}
+}

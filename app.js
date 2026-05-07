@@ -333,9 +333,10 @@ function handleMouseBuzzer(e) {
 
   if (buzzerStatus) {
     buzzerStatus.textContent = `🚨 TURNO PARA ${team.name}`;
-    buzzerStatus.className = "top-buzzer";
+    buzzerStatus.className = `top-buzzer team-${teamIndex + 1}`;
   }
 
+  showBuzzCenterFlash(team.name, teamIndex);
   beep("buzz");
   render();
 }
@@ -453,6 +454,33 @@ function launchCardConfetti(card) {
 
   draw();
 }
+
+
+function showBuzzCenterFlash(teamName, teamIndex) {
+  const oldFlash = document.querySelector(".buzz-center-flash");
+  if (oldFlash) oldFlash.remove();
+
+  const flash = document.createElement("div");
+  flash.className = `buzz-center-flash team-${teamIndex + 1}`;
+  flash.innerHTML = `
+    <div class="buzz-center-card">
+      <span>🚨</span>
+      <strong>${teamName}</strong>
+      <small>¡Presionó primero!</small>
+    </div>
+  `;
+
+  document.body.appendChild(flash);
+
+  setTimeout(() => {
+    flash.classList.add("hide");
+  }, 850);
+
+  setTimeout(() => {
+    flash.remove();
+  }, 1250);
+}
+
 
 function getWinner() {
   if (!state.teams.length) return null;

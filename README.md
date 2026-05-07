@@ -168,3 +168,14 @@ Cuando cualquier equipo presiona su botón de buzzer:
 - El buzzer sigue funcionando igual.
 - Cuando un equipo presiona primero, sí aparece arriba “TURNO PARA ...”.
 - No se modificó la lógica de puntaje, timer, equipos, final ni sonidos.
+
+
+## Ajuste v11
+
+- Se recuperó la diferencia de colores por equipo en el aviso superior:
+  - Equipo 1: azul.
+  - Equipo 2: rosado.
+- Cuando alguien presiona el buzzer, aparece un aviso grande en el centro de la pantalla.
+- Ese aviso central desaparece rápidamente.
+- Después queda el aviso superior indicando quién responde.
+- No se modificó la lógica de preguntas, puntaje, timer, sonidos ni final.
