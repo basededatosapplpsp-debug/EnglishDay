@@ -191,3 +191,12 @@ Cuando cualquier equipo presiona su botón de buzzer:
   - tarjeta de pregunta tipo escenario,
   - botones y timer más llamativos.
 - No se cambió la lógica de preguntas, buzzer, puntaje, timer, final ni sonidos.
+
+
+## Ajuste v13
+
+- Todas las categorías principales ahora tienen 10 preguntas.
+- La Gran Final usa solo 5 preguntas.
+- La final toma las preguntas según la categoría activa antes de entrar a “Modo Final”.
+  Ejemplo: si estabas en “Sexto A vs Sexto B”, la final usará 5 preguntas de Weather / Places in the City.
+- No se modificó el diseño ni la lógica de puntaje, buzzer, sonidos o ganador.

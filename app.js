@@ -11,6 +11,7 @@ let state = {
     { name: "Team B", score: 0, color: "#ff3df2" }
   ],
   finalists: [],
+  finalCategoryIndex: 0,
   buzzerOpen: false,
   buzzedTeam: null
 };
@@ -130,6 +131,9 @@ function bindEvents() {
 function loadCategory(index) {
   stopTimer();
   const cat = GAME_DATA[index];
+  if (cat.id !== "final") {
+    state.finalCategoryIndex = index;
+  }
   state.categoryIndex = index;
   state.questionIndex = -1;
   state.selectedTeam = 0;
@@ -526,6 +530,14 @@ function renderFinalists() {
 
 function startFinalMode() {
   const finalIndex = GAME_DATA.findIndex(c => c.id === "final");
+  const sourceCategory = GAME_DATA[state.finalCategoryIndex] || GAME_DATA[0];
+  const finalCategory = GAME_DATA[finalIndex];
+
+  finalCategory.title = `Gran Final: ${sourceCategory.title}`;
+  finalCategory.match = `Final de Ganadores • ${sourceCategory.topics.join(" / ")}`;
+  finalCategory.topics = sourceCategory.topics;
+  finalCategory.questions = (sourceCategory.finalQuestions || sourceCategory.questions || []).slice(0, 5);
+
   loadCategory(finalIndex);
 
   if (state.finalists.length >= 2) {
