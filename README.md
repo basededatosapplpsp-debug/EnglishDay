@@ -215,3 +215,10 @@ Características:
 - Mezcla de temas desde Sexto hasta Once.
 - Ninguna pregunta se repite entre las tres categorías.
 - Funcionan igual que las demás categorías desde el combo principal.
+
+
+## Ajuste v15
+
+- Solo se corrigió el responsive/adaptación de pantalla.
+- La interfaz ahora se acomoda mejor en laptops, televisores, proyectores, tablets y pantallas pequeñas.
+- No se modificó la lógica del juego, preguntas, buzzer, puntajes, sonidos ni finales.
