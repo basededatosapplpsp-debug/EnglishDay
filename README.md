@@ -85,3 +85,19 @@ Puedes usar una campana, timbre, pulsadores USB o una app de buzzer en celulares
   - muestra “WRONG!”,
   - hace animación de error,
   - reproduce sonido de error con efecto tipo burla.
+
+
+## Modo buzzer con mouse
+
+Esta versión permite usar los dos botones del mouse como buzzers:
+
+- Clic izquierdo: Equipo 1.
+- Clic derecho: Equipo 2.
+
+Cuando aparece una pregunta, el sistema abre automáticamente el buzzer.
+El primer clic válido selecciona al equipo que responderá y bloquea el turno para evitar que el otro equipo lo cambie.
+
+Notas:
+- El clic derecho del navegador está bloqueado para que funcione como buzzer.
+- El host todavía puede usar los botones de la interfaz normalmente.
+- Para mayor comodidad, conecta dos pulsadores físicos configurados como clic izquierdo y clic derecho del mouse.

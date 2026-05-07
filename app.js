@@ -10,7 +10,9 @@ let state = {
     { name: "Team A", score: 0, color: "#00d9ff" },
     { name: "Team B", score: 0, color: "#ff3df2" }
   ],
-  finalists: []
+  finalists: [],
+  buzzerOpen: false,
+  buzzedTeam: null
 };
 
 const $ = (id) => document.getElementById(id);
@@ -31,6 +33,7 @@ const timer = $("timer");
 const selectedTeamName = $("selectedTeamName");
 const currentWinner = $("currentWinner");
 const finalistsList = $("finalistsList");
+const buzzerStatus = $("buzzerStatus");
 
 function beep(type = "correct") {
   if (!state.soundOn) return;
@@ -71,6 +74,10 @@ function beep(type = "correct") {
     tone(250, 0.12, 0.10, 0.20, "square");
     tone(330, 0.24, 0.10, 0.20, "square");
     tone(250, 0.36, 0.14, 0.20, "square");
+  } else if (type === "buzz") {
+    tone(440, 0.00, 0.09, 0.28, "square");
+    tone(880, 0.09, 0.12, 0.30, "square");
+    tone(660, 0.21, 0.16, 0.26, "triangle");
   } else if (type === "tick") {
     tone(900, 0.00, 0.055, 0.11, "square");
   } else if (type === "timerStart") {
@@ -114,6 +121,9 @@ function bindEvents() {
   $("finalModeBtn").addEventListener("click", startFinalMode);
   $("championBtn").addEventListener("click", showChampion);
   $("closeChampionBtn").addEventListener("click", closeChampion);
+
+  document.addEventListener("contextmenu", (e) => e.preventDefault());
+  document.addEventListener("mousedown", handleMouseBuzzer);
 }
 
 function loadCategory(index) {
@@ -129,6 +139,8 @@ function loadCategory(index) {
   }));
   state.timerLeft = state.timerSeconds;
   answerBox.classList.add("hidden");
+  closeBuzzer();
+  if (buzzerStatus) buzzerStatus.classList.add("hidden");
   visual.textContent = "⚡";
   questionText.textContent = "Presiona “Iniciar ronda” para comenzar";
   questionType.textContent = "Vocabulary";
@@ -181,6 +193,7 @@ function setQuestion() {
   if (!q) return;
 
   clearQuestionFeedback();
+  openBuzzer();
   visual.textContent = q.visual;
   questionType.textContent = q.type;
   questionText.textContent = q.q;
@@ -213,6 +226,7 @@ function showAnswer() {
 }
 
 function markCorrect() {
+  closeBuzzer();
   stopTimer();
   changeScore(1);
   showAnswer();
@@ -221,6 +235,7 @@ function markCorrect() {
 }
 
 function markWrong() {
+  closeBuzzer();
   stopTimer();
   showAnswer();
   beep("wrong");
@@ -242,6 +257,8 @@ function resetScore() {
   questionText.textContent = "Presiona “Iniciar ronda” para comenzar";
   questionType.textContent = "Vocabulary";
   answerBox.classList.add("hidden");
+  closeBuzzer();
+  if (buzzerStatus) buzzerStatus.classList.add("hidden");
   stopTimer();
   render();
 }
@@ -262,6 +279,7 @@ function startTimer(auto = false) {
 
     if (state.timerLeft <= 0) {
       state.timerLeft = 0;
+      closeBuzzer();
       stopTimer();
       beep("wrong");
       showQuestionFeedback("wrong", "⏰ TIME OUT!");
@@ -274,6 +292,50 @@ function startTimer(auto = false) {
 function stopTimer() {
   if (state.timerId) clearInterval(state.timerId);
   state.timerId = null;
+}
+
+function openBuzzer() {
+  state.buzzerOpen = true;
+  state.buzzedTeam = null;
+  if (buzzerStatus) {
+    buzzerStatus.textContent = "🎯 Esperando buzzer: clic izquierdo = Equipo 1 | clic derecho = Equipo 2";
+    buzzerStatus.className = "buzzer-status listening";
+    buzzerStatus.classList.remove("hidden");
+  }
+}
+
+function closeBuzzer() {
+  state.buzzerOpen = false;
+}
+
+function handleMouseBuzzer(e) {
+  const clickedButton = e.button;
+
+  if (clickedButton === 2) {
+    e.preventDefault();
+  }
+
+  const clickedInsideControls = e.target.closest("button, select, input, dialog, .team-card, .host-controls, .score-actions, .top-actions, .final-panel");
+  if (clickedInsideControls) return;
+
+  if (!state.buzzerOpen || state.buzzedTeam !== null) return;
+  if (clickedButton !== 0 && clickedButton !== 2) return;
+
+  const teamIndex = clickedButton === 0 ? 0 : 1;
+  const team = state.teams[teamIndex];
+  if (!team) return;
+
+  state.selectedTeam = teamIndex;
+  state.buzzedTeam = teamIndex;
+  state.buzzerOpen = false;
+
+  if (buzzerStatus) {
+    buzzerStatus.textContent = `🚨 ${team.name} responde primero`;
+    buzzerStatus.className = `buzzer-status locked team-${teamIndex + 1}`;
+  }
+
+  beep("buzz");
+  render();
 }
 
 function openSetup() {
