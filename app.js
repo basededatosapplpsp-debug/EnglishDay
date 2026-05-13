@@ -324,9 +324,9 @@ function resetScore() {
   render();
 }
 
-function startTimer(auto = false) {
+function startTimer(auto = false, customSeconds = null) {
   stopTimer();
-  state.timerLeft = state.timerSeconds;
+  state.timerLeft = customSeconds ?? state.timerSeconds;
   render();
 
   beep(auto ? "timerStart" : "tick");
@@ -399,6 +399,9 @@ function handleMouseBuzzer(e) {
   showBuzzCenterFlash(team.name, teamIndex);
   beep("buzz");
   render();
+
+  // Después del buzzer, el equipo que presionó primero tiene 5 segundos para responder.
+  startTimer(false, 5);
 }
 
 function openSetup() {
