@@ -6,7 +6,7 @@ App web lista para usar en TV o proyector y para subir a GitHub Pages.
 
 - `index.html`: estructura principal.
 - `styles.css`: diseño tipo concurso de TV.
-- `data.js`: categorías, temas y preguntas.
+- `data.js`: cursos, temas y preguntas. Incluye las opciones Profe 1 y Profe 2.
 - `app.js`: lógica del concurso, puntaje, sonidos, timer y final.
 
 ## Cómo usarlo localmente
@@ -14,8 +14,9 @@ App web lista para usar en TV o proyector y para subir a GitHub Pages.
 1. Abre `index.html` en Google Chrome, Edge o Firefox.
 2. Conecta el PC al TV por HDMI.
 3. Presiona F11 para pantalla completa.
-4. Selecciona la categoría desde el combo superior.
-5. Configura los nombres de los equipos con el botón “Configurar”.
+4. Selecciona el curso desde el primer combo superior.
+5. Selecciona el tema desde el segundo combo superior: puedes usar “Todos los temas” o un tema específico.
+6. Configura los nombres de los equipos con el botón “Configurar”.
 6. Usa:
    - Flecha derecha: siguiente pregunta.
    - Flecha izquierda: pregunta anterior.
@@ -245,3 +246,11 @@ Características:
 - Solo se dio más espacio a la parte inferior del panel central.
 - La barra de progreso y el texto de pregunta ya no deben verse cortados.
 - No se modificó lógica, preguntas, buzzer, puntajes, sonidos ni finales.
+
+
+## Ajuste v20
+
+- Se agregó un segundo combo para seleccionar temas dinámicamente.
+- Cada curso puede mostrar “Todos los temas” o solo un tema específico.
+- Se agregaron las opciones “Profe 1” y “Profe 2” al combo principal de cursos.
+- No se modificó la lógica de puntaje, timer, buzzer, sonidos, final ni campeón.

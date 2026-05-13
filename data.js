@@ -181,6 +181,59 @@ const GAME_DATA = [
       { type:"Mixed", visual:"⚡", q:"Say one environment word and one travel word.", a:"Example: Water and passport" }
     ]
   },
+
+  {
+    id: "profe-1",
+    title: "Profe 1",
+    match: "Profe 1 contra Profe 2",
+    defaultTeams: ["Profe 1", "Profe 2"],
+    topics: ["Classroom English", "Quick Questions", "Spelling"],
+    questions: [
+      { type:"Classroom English", visual:"📚", q:"Say in English: Abran el cuaderno", a:"Open your notebook" },
+      { type:"Classroom English", visual:"✏️", q:"Say in English: Escriban la respuesta", a:"Write the answer" },
+      { type:"Classroom English", visual:"🙋", q:"What do you say when you need help?", a:"Can you help me, please?" },
+      { type:"Quick Questions", visual:"👋", q:"How do you say 'Buenos días' in English?", a:"Good morning" },
+      { type:"Quick Questions", visual:"🙏", q:"How do you say 'Gracias' in English?", a:"Thank you" },
+      { type:"Quick Questions", visual:"🚪", q:"How do you ask permission to go out?", a:"May I go out?" },
+      { type:"Spelling", visual:"🔤", q:"Spell the word: TEACHER", a:"T-E-A-C-H-E-R" },
+      { type:"Spelling", visual:"🏫", q:"Spell the word: SCHOOL", a:"S-C-H-O-O-L" },
+      { type:"Classroom English", visual:"👂", q:"What does 'Listen carefully' mean?", a:"Escuchen con atención" },
+      { type:"Quick Questions", visual:"✅", q:"How do you say 'Muy bien' in English?", a:"Very good" }
+    ],
+    finalQuestions: [
+      { type:"Classroom English", visual:"📚", q:"Say three classroom instructions in English.", a:"Open your book, write, listen, etc." },
+      { type:"Quick Questions", visual:"⚡", q:"Answer: How are you?", a:"I'm fine / I'm good" },
+      { type:"Spelling", visual:"🔤", q:"Spell the word: ENGLISH", a:"E-N-G-L-I-S-H" },
+      { type:"Classroom English", visual:"🙋", q:"Ask for help in English.", a:"Can you help me, please?" },
+      { type:"Quick Questions", visual:"🏆", q:"Say one polite expression in English.", a:"Please / Thank you / Excuse me" }
+    ]
+  },
+  {
+    id: "profe-2",
+    title: "Profe 2",
+    match: "Profe 2 contra Profe 1",
+    defaultTeams: ["Profe 2", "Profe 1"],
+    topics: ["Teacher Challenge", "Pronunciation", "Mixed Review"],
+    questions: [
+      { type:"Teacher Challenge", visual:"👩‍🏫", q:"Who teaches students?", a:"Teacher" },
+      { type:"Teacher Challenge", visual:"🧑‍🎓", q:"Who studies in class?", a:"Student" },
+      { type:"Teacher Challenge", visual:"📖", q:"What do students read?", a:"A book" },
+      { type:"Pronunciation", visual:"🔊", q:"Pronounce this word: English", a:"English" },
+      { type:"Pronunciation", visual:"🔊", q:"Pronounce this word: Classroom", a:"Classroom" },
+      { type:"Pronunciation", visual:"🔊", q:"Pronounce this word: Question", a:"Question" },
+      { type:"Mixed Review", visual:"🕒", q:"How do you say 'Tengo 15 años' in English?", a:"I am 15 years old" },
+      { type:"Mixed Review", visual:"🏠", q:"How do you say 'Vivo en Colombia' in English?", a:"I live in Colombia" },
+      { type:"Mixed Review", visual:"🎯", q:"Say one sentence with 'I like...'", a:"Example: I like soccer" },
+      { type:"Teacher Challenge", visual:"👏", q:"How do you congratulate a student in English?", a:"Good job / Excellent / Well done" }
+    ],
+    finalQuestions: [
+      { type:"Teacher Challenge", visual:"👩‍🏫", q:"Say three classroom words in English.", a:"Teacher, student, book, board, etc." },
+      { type:"Pronunciation", visual:"🔊", q:"Pronounce: Congratulations", a:"Congratulations" },
+      { type:"Mixed Review", visual:"🎯", q:"Say one sentence with 'I am...'.", a:"Example: I am happy" },
+      { type:"Mixed Review", visual:"🏠", q:"Say one sentence with 'I live...'.", a:"Example: I live in Colombia" },
+      { type:"Teacher Challenge", visual:"🏆", q:"Say one positive phrase for students.", a:"Well done / Good job / Excellent" }
+    ]
+  },
   {
     id: "final",
     title: "Gran Final",

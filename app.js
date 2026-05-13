@@ -1,5 +1,6 @@
 let state = {
   categoryIndex: 0,
+  topicFilter: "all",
   questionIndex: -1,
   selectedTeam: 0,
   timerSeconds: 15,
@@ -19,6 +20,7 @@ let state = {
 const $ = (id) => document.getElementById(id);
 
 const categorySelect = $("categorySelect");
+const topicSelect = $("topicSelect");
 const teamsContainer = $("teamsContainer");
 const categoryTitle = $("categoryTitle");
 const matchName = $("matchName");
@@ -105,6 +107,9 @@ function init() {
 
 function bindEvents() {
   categorySelect.addEventListener("change", (e) => loadCategory(Number(e.target.value)));
+  if (topicSelect) {
+    topicSelect.addEventListener("change", (e) => loadTopic(e.target.value));
+  }
   $("setupBtn").addEventListener("click", openSetup);
   $("saveSetupBtn").addEventListener("click", saveSetup);
   $("soundBtn").addEventListener("click", toggleSound);
@@ -135,7 +140,9 @@ function loadCategory(index) {
     state.finalCategoryIndex = index;
   }
   state.categoryIndex = index;
+  state.topicFilter = "all";
   state.questionIndex = -1;
+  renderTopicOptions(cat);
   state.selectedTeam = 0;
   state.teams = cat.defaultTeams.map((name, i) => ({
     name,
@@ -154,11 +161,13 @@ function loadCategory(index) {
 
 function render() {
   const cat = GAME_DATA[state.categoryIndex];
+  const activeQuestions = getActiveQuestions(cat);
 
   categoryTitle.textContent = cat.title;
   matchName.textContent = cat.match;
   categorySelect.value = state.categoryIndex;
-  roundTopic.textContent = cat.topics.join(" • ");
+  roundTopic.textContent = state.topicFilter === "all" ? cat.topics.join(" • ") : state.topicFilter;
+  if (topicSelect) topicSelect.value = state.topicFilter;
 
   timer.textContent = state.timerLeft;
   timer.classList.toggle("warning", state.timerLeft <= 5 && state.timerLeft > 0);
@@ -183,7 +192,7 @@ function render() {
   selectedTeamName.textContent = state.teams[state.selectedTeam]?.name || "Sin equipo";
   currentWinner.textContent = getWinnerText();
 
-  const total = cat.questions.length;
+  const total = activeQuestions.length;
   const current = Math.max(0, state.questionIndex + 1);
   questionProgress.textContent = `Pregunta ${current} de ${total}`;
   const pct = total ? (current / total) * 100 : 0;
@@ -194,7 +203,8 @@ function render() {
 
 function setQuestion() {
   const cat = GAME_DATA[state.categoryIndex];
-  const q = cat.questions[state.questionIndex];
+  const activeQuestions = getActiveQuestions(cat);
+  const q = activeQuestions[state.questionIndex];
   if (!q) return;
 
   clearQuestionFeedback();
@@ -211,14 +221,18 @@ function setQuestion() {
 
 function nextQuestion() {
   const cat = GAME_DATA[state.categoryIndex];
-  state.questionIndex = (state.questionIndex + 1) % cat.questions.length;
+  const activeQuestions = getActiveQuestions(cat);
+  if (!activeQuestions.length) return;
+  state.questionIndex = (state.questionIndex + 1) % activeQuestions.length;
   setQuestion();
 }
 
 function prevQuestion() {
   const cat = GAME_DATA[state.categoryIndex];
+  const activeQuestions = getActiveQuestions(cat);
+  if (!activeQuestions.length) return;
   if (state.questionIndex <= 0) {
-    state.questionIndex = cat.questions.length - 1;
+    state.questionIndex = activeQuestions.length - 1;
   } else {
     state.questionIndex -= 1;
   }
@@ -252,6 +266,48 @@ function changeScore(delta) {
   const team = state.teams[state.selectedTeam];
   if (!team) return;
   team.score = Math.max(0, team.score + delta);
+  render();
+}
+
+function getActiveQuestions(cat) {
+  if (!cat || !Array.isArray(cat.questions)) return [];
+  if (state.topicFilter === "all") return cat.questions;
+  return cat.questions.filter(q => q.type === state.topicFilter);
+}
+
+function renderTopicOptions(cat) {
+  if (!topicSelect || !cat) return;
+  const topics = [...new Set((cat.questions || []).map(q => q.type))];
+  topicSelect.innerHTML = "";
+
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = "Todos los temas";
+  topicSelect.appendChild(allOption);
+
+  topics.forEach(topic => {
+    const option = document.createElement("option");
+    option.value = topic;
+    option.textContent = topic;
+    topicSelect.appendChild(option);
+  });
+
+  topicSelect.value = state.topicFilter;
+}
+
+function loadTopic(topic) {
+  stopTimer();
+  const cat = GAME_DATA[state.categoryIndex];
+  state.topicFilter = topic || "all";
+  state.questionIndex = -1;
+  state.timerLeft = state.timerSeconds;
+  answerBox.classList.add("hidden");
+  closeBuzzer();
+  if (buzzerStatus) buzzerStatus.classList.add("hidden");
+  visual.textContent = "⚡";
+  questionText.textContent = "Presiona “Iniciar ronda” para comenzar";
+  questionType.textContent = state.topicFilter === "all" ? "Vocabulary" : state.topicFilter;
+  renderTopicOptions(cat);
   render();
 }
 
