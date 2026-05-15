@@ -2016,3 +2016,111 @@ h1{
     font-size:clamp(21px,2.65vw,38px) !important;
   }
 }
+
+/* ==========================================================
+   v22 LONG QUESTION COMPLETE FIT FIX ONLY
+   Hace que las preguntas largas se ajusten dentro de la tarjeta
+   sin tocar datos, logica, puntaje, buzzer, timer ni final.
+   ========================================================== */
+
+.question-card{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:4px !important;
+  overflow:hidden !important;
+  height:calc(100% - 218px) !important;
+  max-height:calc(100% - 218px) !important;
+  padding:12px 18px !important;
+}
+
+.question-card::before{
+  bottom:12px !important;
+  height:48px !important;
+}
+
+.visual{
+  flex:0 0 auto !important;
+  font-size:clamp(30px,4.2vw,58px) !important;
+  line-height:1 !important;
+}
+
+.question-type{
+  flex:0 0 auto !important;
+  margin:2px 0 4px !important;
+  font-size:clamp(10px,1vw,14px) !important;
+  line-height:1 !important;
+}
+
+.question-card h3{
+  flex:0 1 auto !important;
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 auto !important;
+  padding:0 4px !important;
+  font-size:clamp(17px,2.35vw,32px) !important;
+  line-height:1.02 !important;
+  overflow-wrap:break-word !important;
+  word-break:normal !important;
+  text-wrap:balance !important;
+}
+
+.answer-box{
+  flex:0 1 auto !important;
+  margin-top:6px !important;
+  padding:8px 12px !important;
+  font-size:clamp(12px,1.25vw,16px) !important;
+  line-height:1.1 !important;
+}
+
+.host-controls{
+  position:relative !important;
+  z-index:5 !important;
+}
+
+@media (max-width:1366px){
+  .question-card{
+    height:calc(100% - 202px) !important;
+    max-height:calc(100% - 202px) !important;
+    padding:10px 16px !important;
+  }
+
+  .question-card h3{
+    font-size:clamp(16px,2.2vw,29px) !important;
+    line-height:1.01 !important;
+  }
+
+  .visual{
+    font-size:clamp(28px,3.9vw,50px) !important;
+  }
+}
+
+@media (max-height:760px){
+  .question-card{
+    height:calc(100% - 190px) !important;
+    max-height:calc(100% - 190px) !important;
+    margin:6px 0 !important;
+    padding:8px 14px !important;
+    gap:3px !important;
+  }
+
+  .question-card h3{
+    font-size:clamp(15px,2.05vw,26px) !important;
+    line-height:1 !important;
+  }
+
+  .visual{
+    font-size:clamp(24px,3.4vw,42px) !important;
+  }
+
+  .question-type{
+    font-size:clamp(9px,.9vw,12px) !important;
+    margin:1px 0 3px !important;
+  }
+
+  .answer-box{
+    font-size:clamp(11px,1.1vw,14px) !important;
+    margin-top:4px !important;
+  }
+}
