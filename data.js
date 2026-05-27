@@ -77,7 +77,7 @@ const GAME_DATA = [
       { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Un pastel se corta en 8 partes. Si Carlos come 3 partes, ¿qué fracción del pastel queda?", a:"5/8" },
       { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Si 3 camisas cuestan $45.000, ¿cuánto cuesta una sola camisa?", a:"$15.000" },
       { type:"Razonamiento Cuantitativo", visual:"🧠", q:"En un salón de 30 estudiantes, el 50% son mujeres. ¿Cuántas mujeres hay?", a:"15" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Si la escala de un mapa dice que 1cm representa 5km, ¿cuántos km representan 4cm?", a:"20 km" },
+      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Si la escala de un mapa dice que 1cm represents 5km, ¿cuántos km representan 4cm?", a:"20 km" },
       { type:"Razonamiento Cuantitativo", visual:"🧠", q:"¿Qué número sigue en la secuencia: 2, 5, 8, 11, ...?", a:"14" }
     ],
     finalQuestions: [
@@ -149,70 +149,4 @@ const GAME_DATA = [
       { type:"Resta", visual:"➖", q:"Calcula: 1/2 - 1/4", a:"1/4" },
       // MULTIPLICACIÓN (5)
       { type:"Multiplicación", visual:"✖️", q:"Resuelve el producto notable: (x + 3)(x - 3)", a:"x² - 9" },
-      { type:"Multiplicación", visual:"✖️", q:"Calcula: √2 × √3", a:"√6" },
-      { type:"Multiplicación", visual:"✖️", q:"Desarrolla el binomio: (x + 2)²", a:"x² + 4x + 4" },
-      { type:"Multiplicación", visual:"✖️", q:"¿Cuánto es (3x³)³?", a:"27x⁹" },
-      { type:"Multiplicación", visual:"✖️", q:"Multiplica: (2x)(x - 5)", a:"2x² - 10x" },
-      // DIVISIÓN (5)
-      { type:"División", visual:"➗", q:"Simplifica la fracción algebraica: (x² - 4) ÷ (x - 2)", a:"x + 2" },
-      { type:"División", visual:"➗", q:"Calcula: √10 ÷ √2", a:"√5" },
-      { type:"División", visual:"➗", q:"Simplifica: 5x³ ÷ x³", a:"5" },
-      { type:"División", visual:"➗", q:"Si x² = 25 y x es positivo, ¿cuánto es x?", a:"5" },
-      { type:"División", visual:"➗", q:"Simplifica: (3x + 6) ÷ 3", a:"x + 2" },
-      // RAZONAMIENTO CUANTITATIVO (5)
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"La suma de las edades de un padre y su hijo es 40 años. Si el padre tiene el triple de la edad del hijo, ¿cuánto tiene el hijo?", a:"10 años" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"En una urna hay 3 bolas rojas y 2 azules. ¿Cuál es la probabilidad en porcentaje de sacar una azul?", a:"40%" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"¿Cuál es la hipotenusa de un triángulo rectángulo de lados 3 y 4?", a:"5" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Si subes una escalera de 2 en 2 dando 15 pasos, ¿cuántos escalones tiene?", a:"30" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"¿Cuál es el 10% de 250?", a:"25" }
-    ],
-    finalQuestions: [
-      { type:"Multiplicación", visual:"✖️", q:"Desarrolla el binomio al cuadrado: (x + 1)²", a:"x² + 2x + 1" },
-      { type:"Razonamiento Cuantitativo", visual:"💡", q:"En una bolsa hay 3 bolas rojas y 2 azules. ¿Cuál es la probabilidad en porcentaje de sacar una bola azul al azar?", a:"40%" }
-    ]
-  },
-  {
-    id: "10-1_vs_10-2",
-    title: "Décimo 1 vs Décimo 2",
-    match: "Décimo 1 contra Décimo 2",
-    defaultTeams: ["Décimo 1", "Décimo 2"],
-    topics: ["Suma", "Resta", "Multiplicación", "División", "Razonamiento Cuantitativo"],
-    questions: [
-      // SUMA (5)
-      { type:"Suma", visual:"➕", q:"Identidad fundamental: sen²(x) + cos²(x)", a:"1" },
-      { type:"Suma", visual:"➕", q:"Si vector A=(2,3) y B=(4,1), calcula A + B", a:"(6, 4)" },
-      { type:"Suma", visual:"➕", q:"¿Cuánto suma la progresión aritmética: 2 + 4 + 6 + 8?", a:"20" },
-      { type:"Suma", visual:"➕", q:"Suma de logaritmos: log(2) + log(5) es igual a log de...", a:"10" },
-      { type:"Suma", visual:"➕", q:"¿Cuánto suman los ángulos agudos de un triángulo rectángulo?", a:"90 grados" },
-      // RESTA (5)
-      { type:"Resta", visual:"➖", q:"Si vector A=(5,8) y B=(2,3), calcula A - B", a:"(3, 5)" },
-      { type:"Resta", visual:"➖", q:"Utilizando identidades, ¿a qué es igual: 1 - sen²(x)?", a:"cos²(x)" },
-      { type:"Resta", visual:"➖", q:"¿A qué es igual: sec²(x) - tan²(x)?", a:"1" },
-      { type:"Resta", visual:"➖", q:"Resta de logaritmos: log(20) - log(2) es igual a log de...", a:"10" },
-      { type:"Resta", visual:"➖", q:"Si el ángulo alfa es de 30°, ¿cuánto es su ángulo complementario?", a:"60 grados" },
-      // MULTIPLICACIÓN (5)
-      { type:"Multiplicación", visual:"✖️", q:"Calcula el valor exacto de: 2 × sen(30°) × cos(30°)", a:"√3/2" },
-      { type:"Multiplicación", visual:"✖️", q:"Calcula el producto punto de los vectores (1,3) y (2,4)", a:"14" },
-      { type:"Multiplicación", visual:"✖️", q:"¿A qué es igual: log(x³)?", a:"3 · log(x)" },
-      { type:"Multiplicación", visual:"✖️", q:"Calcula: sen(45°) × cos(45°)", a:"1/2" },
-      { type:"Multiplicación", visual:"✖️", q:"¿Cuánto es el doble de la amplitud de la función y = 3sen(x)?", a:"6" },
-      // DIVISIÓN (5)
-      { type:"División", visual:"➗", q:"¿A qué es igual la división trigonométrica sen(x) ÷ cos(x)?", a:"tan(x)" },
-      { type:"División", visual:"➗", q:"¿A qué es igual cos(x) ÷ sen(x)?", a:"cotan(x)" },
-      { type:"División", visual:"➗", q:"Si tan(x) = 1, ¿cuál es el valor del ángulo agudo x en grados?", a:"45°" },
-      { type:"División", visual:"➗", q:"¿A qué es igual 1 ÷ sec(x)?", a:"cos(x)" },
-      { type:"División", visual:"➗", q:"Divide el sector circular: ¿cuántos radianes equivalen a 180° ÷ 2?", a:"π/2 radianes (o 90°)" },
-      // RAZONAMIENTO CUANTITATIVO (5)
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Un árbol proyecta una sombra de 12 metros con un ángulo de elevación de 45°. ¿Cuál es la altura del árbol?", a:"12 metros" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"¿Cuál es el valor del diámetro de una circunferencia de radio 7,5 cm?", a:"15 cm" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Si tiras un dado común, ¿cuál es la probabilidad de sacar un número par?", a:"1/2 (o 50%)" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Un triángulo equilátero tiene un lado de 6 cm. ¿Cuánto mide su perímetro?", a:"18 cm" },
-      { type:"Razonamiento Cuantitativo", visual:"🧠", q:"Si recorres una pista circular de 400 metros dando 2 vueltas y media, ¿cuántos metros recorres?", a:"1000 metros" }
-    ],
-    finalQuestions: [
-      { type:"Suma", visual:"➕", q:"¿Cuánto suman los ángulos internos de cualquier triángulo?", a:"180 grados" },
-      { type:"Razonamiento Cuantitativo", visual:"💡", q:"Un ciclista viaja a una velocidad constante de 25 km/h. ¿Cuántos kilómetros recorrerá en 2 horas y media?", a:"62.5 km" }
-    ]
-  },
-  {
-    id: "11-1_vs_1
+      { type:"Multiplicación", visual:"✖️", q:"Calcula
