@@ -66,8 +66,8 @@ const GAME_DATA = [
       { type:"Todo", visual:"🔑", q:"¿Qué es clave para mantener la vida integral alineada?", a:"Dominio propio y obediencia" },
 
 
-       // Espíritu, Alma, Cuerpo, Todo: (se mantiene igual)
-      // Biblia: 30 preguntas añadidas al final
+ // Espíritu, Alma, Cuerpo, Todo: (se mantiene igual)
+      // Biblia: 30 preguntas originales
       { type:"Biblia", visual:"📖", q:"¿Cuántos libros tiene el Nuevo Testamento?", a:"27" },
       { type:"Biblia", visual:"📖", q:"¿Cuál es el versículo más largo de la Biblia?", a:"Éster 8:9" },
       { type:"Biblia", visual:"📖", q:"¿Cómo se llamaba el padre de Sansón?", a:"Manao" },
@@ -97,7 +97,29 @@ const GAME_DATA = [
       { type:"Biblia", visual:"📖", q:"¿Qué mujer salvó a su pueblo engañando al rey Asuero?", a:"Ester" },
       { type:"Biblia", visual:"📖", q:"¿Qué profeta fue llamado ‘el profeta llorón’?", a:"Jeremías" },
       { type:"Biblia", visual:"📖", q:"¿Quién fue conocido por su fuerza y luchas contra los filisteos?", a:"Sansón" },
-      { type:"Biblia", visual:"📖", q:"¿Cuál es el primer milagro que realizó Moisés?", a:"Convertir su vara en serpiente" }
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el primer milagro que realizó Moisés?", a:"Convertir su vara en serpiente" },
+      // 20 preguntas adicionales más difíciles
+      { type:"Biblia", visual:"📖", q:"¿Cuál fue el profeta que confrontó a Acab y Jezabel?", a:"Elías" },
+      { type:"Biblia", visual:"📖", q:"¿Cuántos años gobernó Salomón en Israel?", a:"40 años" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el capítulo más corto de la Biblia?", a:"Salmo 117" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el primer rey de Israel?", a:"Saúl" },
+      { type:"Biblia", visual:"📖", q:"¿Qué profeta predijo la caída de Babilonia?", a:"Isaías" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue conocido como el profeta de fuego?", a:"Elías" },
+      { type:"Biblia", visual:"📖", q:"¿Qué discípulo escribió el libro de Apocalipsis?", a:"Juan" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es la mujer que dijo 'Hágase en mí según tu palabra'?", a:"María" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue conocido como el 'apóstol de los gentiles'?", a:"Pablo" },
+      { type:"Biblia", visual:"📖", q:"¿Cuántos capítulos tiene el libro de Isaías?", a:"66" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el nombre del gigante vencido por David?", a:"Goliat" },
+      { type:"Biblia", visual:"📖", q:"¿Quién interpretó los sueños de Nabucodonosor?", a:"Daniel" },
+      { type:"Biblia", visual:"📖", q:"¿Qué libro profético sigue a Jeremías?", a:"Lamentaciones" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el nombre del jardín donde Adán y Eva vivían?", a:"Edén" },
+      { type:"Biblia", visual:"📖", q:"¿Qué profeta desafió a los profetas de Baal en el Monte Carmelo?", a:"Elías" },
+      { type:"Biblia", visual:"📖", q:"¿Qué discípulo fue conocido por dudar de la resurrección de Jesús?", a:"Tomás" },
+      { type:"Biblia", visual:"📖", q:"¿Qué rey hizo construir el templo en Jerusalén?", a:"Salomón" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el profeta que ayudó a Eliseo a multiplicar el aceite de la viuda?", a:"Eliseo" },
+      { type:"Biblia", visual:"📖", q:"¿Qué libro contiene la historia de Daniel en el foso de los leones?", a:"Daniel" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es la profecía más larga de Jeremías?", a:"Jeremías 1-52" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el profeta que ascendió al cielo en un carro de fuego?", a:"Elías" }
     ]
   }
 ];
