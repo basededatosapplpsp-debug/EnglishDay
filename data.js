@@ -63,7 +63,41 @@ const GAME_DATA = [
       { type:"Todo", visual:"🤝", q:"¿Qué actitud ayuda a mantener relaciones sanas?", a:"Perdón y comprensión" },
       { type:"Todo", visual:"📱", q:"¿Qué debemos vigilar para el cuerpo y alma?", a:"Uso de redes y entretenimiento" },
       { type:"Todo", visual:"🎯", q:"¿Qué decisiones afectan nuestra integridad?", a:"Hábitos diarios, pensamientos y relaciones" },
-      { type:"Todo", visual:"🔑", q:"¿Qué es clave para mantener la vida integral alineada?", a:"Dominio propio y obediencia" }
+      { type:"Todo", visual:"🔑", q:"¿Qué es clave para mantener la vida integral alineada?", a:"Dominio propio y obediencia" },
+
+
+       // Espíritu, Alma, Cuerpo, Todo: (se mantiene igual)
+      // Biblia: 30 preguntas añadidas al final
+      { type:"Biblia", visual:"📖", q:"¿Cuántos libros tiene el Nuevo Testamento?", a:"27" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el versículo más largo de la Biblia?", a:"Éster 8:9" },
+      { type:"Biblia", visual:"📖", q:"¿Cómo se llamaba el padre de Sansón?", a:"Manao" },
+      { type:"Biblia", visual:"📖", q:"¿Quién construyó el arca?", a:"Noé" },
+      { type:"Biblia", visual:"📖", q:"¿Cuántos días y noches llovió durante el diluvio?", a:"40" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue la primera persona en pecar?", a:"Adán" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál fue el primer milagro de Jesús?", a:"Convertir agua en vino" },
+      { type:"Biblia", visual:"📖", q:"¿Qué profeta fue tragado por un gran pez?", a:"Jonás" },
+      { type:"Biblia", visual:"📖", q:"¿Quién interpretó los sueños del faraón?", a:"José" },
+      { type:"Biblia", visual:"📖", q:"¿Cuántos discípulos tuvo Jesús?", a:"12" },
+      { type:"Biblia", visual:"📖", q:"¿Quién recibió los Diez Mandamientos?", a:"Moisés" },
+      { type:"Biblia", visual:"📖", q:"¿Qué rey escribió muchos de los Salmos?", a:"David" },
+      { type:"Biblia", visual:"📖", q:"¿Qué libro cuenta la historia de Rut?", a:"Rut" },
+      { type:"Biblia", visual:"📖", q:"¿Qué personaje fue famoso por su gran paciencia?", a:"Job" },
+      { type:"Biblia", visual:"📖", q:"¿Quién traicionó a Jesús por 30 monedas de plata?", a:"Judas Iscariote" },
+      { type:"Biblia", visual:"📖", q:"¿Qué mar se abrió para que los israelitas cruzaran?", a:"Mar Rojo" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue conocido como el hombre más sabio de Israel?", a:"Salomón" },
+      { type:"Biblia", visual:"📖", q:"¿Qué profeta desafió a los profetas de Baal en el monte Carmelo?", a:"Elías" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue liberado de la cueva de los leones?", a:"Daniel" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el primer libro de la Biblia?", a:"Génesis" },
+      { type:"Biblia", visual:"📖", q:"¿Qué discípulo negó a Jesús tres veces?", a:"Pedro" },
+      { type:"Biblia", visual:"📖", q:"¿Qué río se convirtió en sangre en Egipto?", a:"Nilo" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue elevado al cielo sin morir?", a:"Enoc y Elías" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el último libro de la Biblia?", a:"Apocalipsis" },
+      { type:"Biblia", visual:"📖", q:"¿Qué alimento proporcionó Dios a los israelitas en el desierto?", a:"Maná" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue vendido como esclavo por sus hermanos?", a:"José" },
+      { type:"Biblia", visual:"📖", q:"¿Qué mujer salvó a su pueblo engañando al rey Asuero?", a:"Ester" },
+      { type:"Biblia", visual:"📖", q:"¿Qué profeta fue llamado ‘el profeta llorón’?", a:"Jeremías" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue conocido por su fuerza y luchas contra los filisteos?", a:"Sansón" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el primer milagro que realizó Moisés?", a:"Convertir su vara en serpiente" }
     ]
   }
 ];
