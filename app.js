@@ -153,9 +153,9 @@ function loadCategory(index) {
   answerBox.classList.add("hidden");
   closeBuzzer();
   if (buzzerStatus) buzzerStatus.classList.add("hidden");
-  visual.textContent = "⚡";
+  visual.textContent = "📖";
   questionText.textContent = "Presiona “Iniciar ronda” para comenzar";
-  questionType.textContent = "Vocabulary";
+  questionType.textContent = "Preguntas Bíblicas";
   render();
 }
 
