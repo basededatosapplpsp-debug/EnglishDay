@@ -3,50 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Show Bíblico | Desafío de la Palabra</title>
+  <title>English Day | Think Fast Challenge</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
   <div class="stage-glow"></div>
 
-  <!-- HEADER / PROGRAMA DE TV -->
-  <header class="topbar">
+<header class="topbar">
     <div>
-      <p class="eyebrow">📖 PROGRAMA BÍBLICO EN VIVO</p>
-      <h1>DESAFÍO DE LA PALABRA</h1>
+      <p class="eyebrow">OLIMPIADAS DE MATEMÁTICAS 2026</p>
+      <h1>Think Fast Math Challenge</h1>
     </div>
 
-    <div class="top-actions">
-      <select id="categorySelect" title="Seleccionar categoría bíblica">
-        <option value="pentateuco">Pentateuco</option>
-        <option value="historicos">Libros Históricos</option>
-        <option value="poeticos">Libros Poéticos</option>
-        <option value="profetas">Profetas</option>
-        <option value="evangelios">Evangelios</option>
-        <option value="epistolas">Epístolas</option>
-        <option value="final">🏆 GRAN FINAL BÍBLICA 🏆</option>
+<div class="top-actions">
+      <select id="categorySelect" title="Seleccionar curso">
+        <option value="6-1_vs_6-2">Sexto 1 vs Sexto 2</option>
+        <option value="7-1_vs_7-2">Séptimo 1 vs Séptimo 2</option>
+        <option value="8-1_vs_8-2">Octavo 1 vs Octavo 2</option>
+        <option value="9-1_vs_9-2">Noveno 1 vs Noveno 2</option>
+        <option value="10-1_vs_10-2">Décimo 1 vs Décimo 2</option>
+        <option value="11-1_vs_11-2">Once 1 vs Once 2</option>
+        <option value="final">🏆 Gran Final 🏆</option>
       </select>
-
-      <select id="topicSelect" title="Nivel de pregunta">
-        <option value="facil">Fácil</option>
-        <option value="medio">Intermedio</option>
-        <option value="dificil">Difícil</option>
-        <option value="memoria">Memorización de versículos</option>
+      <select id="topicSelect" title="Seleccionar tema">
+        <option value="Suma">Suma</option>
+        <option value="Resta">Resta</option>
+        <option value="Multiplicación">Multiplicación</option>
+        <option value="División">División</option>
+        <option value="Razonamiento Cuantitativo">Razonamiento Cuantitativo</option>
       </select>
-
-      <button id="setupBtn" class="ghost-btn">⚙️ Preparar equipos</button>
+      <button id="setupBtn" class="ghost-btn">⚙️ Configurar</button>
       <button id="soundBtn" class="ghost-btn">🔊 Sonido</button>
     </div>
   </header>
 
   <main class="app-shell">
-
-    <!-- MARCADOR -->
-    <section class="score-panel glass">
+<section class="score-panel glass">
       <div class="panel-title">
-        <span>📊 Marcador Espiritual</span>
-        <small id="matchName">Encuentro Bíblico</small>
+        <span>Marcador</span>
+        <small id="matchName">Match</small>
       </div>
 
       <div id="teamsContainer" class="teams-container"></div>
@@ -58,53 +53,38 @@
       </div>
 
       <div class="selected-team-card">
-        <small>⚔️ Equipo en turno</small>
-        <strong id="selectedTeamName">Equipo 1</strong>
-        <p>
-          Responde correctamente la pregunta bíblica para ganar puntos y avanzar en la competencia de la Palabra de Dios.
-        </p>
+        <small>Equipo seleccionado</small>
+        <strong id="selectedTeamName">Team A</strong>
+        <p>Cuando un equipo resuelva el problema y toque el botón, selecciónalo y marca si su resultado es correcto o incorrecto.</p>
       </div>
     </section>
 
-    <!-- JUEGO CENTRAL -->
     <section class="game-panel glass">
-
       <div class="round-row">
         <div>
-          <p class="eyebrow">📖 CATEGORÍA BÍBLICA</p>
-          <h2 id="categoryTitle">Esperando inicio...</h2>
+          <p class="eyebrow">Categoría</p>
+          <h2 id="categoryTitle">Loading...</h2>
         </div>
-
-        <div id="buzzerStatus" class="top-buzzer hidden">
-          🚨 TURNO DEL EQUIPO
-        </div>
-
+        <div id="buzzerStatus" class="top-buzzer hidden">🚨 TURNO PARA EQUIPO</div>
         <div class="timer-wrap">
           <div id="timer" class="timer">15</div>
-          <button id="startTimerBtn" class="timer-btn">▶ Iniciar</button>
+          <button id="startTimerBtn" class="timer-btn">▶ Timer</button>
         </div>
       </div>
 
-      <div id="questionCard" class="question-card">
-        <div id="visual" class="visual">📖</div>
-
-        <p id="questionType" class="question-type">
-          Biblia / Conocimiento espiritual
-        </p>
-
-        <h3 id="questionText">
-          Presiona “Iniciar ronda” para comenzar la prueba bíblica
-        </h3>
-
+ <div id="questionCard" class="question-card">
+        <div id="visual" class="visual">➗</div>
+        <p id="questionType" class="question-type">Operaciones / Lógica</p>
+        <h3 id="questionText">Presiona “Iniciar ronda” para ver el problema</h3>
         <div id="answerBox" class="answer-box hidden">
-          <span>📌 Respuesta:</span>
+          <span>Solución:</span>
           <strong id="answerText"></strong>
         </div>
       </div>
 
       <div class="host-controls">
         <button id="prevBtn" class="control-btn">⬅ Anterior</button>
-        <button id="nextBtn" class="control-btn primary">Iniciar / Siguiente</button>
+        <button id="nextBtn" class="control-btn primary">Iniciar ronda / Siguiente</button>
         <button id="showAnswerBtn" class="control-btn">👁 Mostrar respuesta</button>
         <button id="correctBtn" class="control-btn success">✅ Correcto</button>
         <button id="wrongBtn" class="control-btn danger">❌ Incorrecto</button>
@@ -113,63 +93,53 @@
       <div class="progress-wrap">
         <div class="progress-label">
           <span id="questionProgress">Pregunta 0 de 0</span>
-          <span id="roundTopic">Palabra de Dios</span>
+          <span id="roundTopic">Topic</span>
         </div>
-        <div class="progress-bar">
-          <div id="progressFill"></div>
-        </div>
+        <div class="progress-bar"><div id="progressFill"></div></div>
       </div>
     </section>
 
-    <!-- FINAL -->
     <section class="final-panel glass">
       <div class="panel-title">
-        <span>🏆 Final del Reino</span>
-        <small>Clasificados</small>
+        <span>Final & Ganadores</span>
+        <small>Organiza la final</small>
       </div>
 
       <div class="winner-box">
-        <p>Ganador del encuentro</p>
-        <strong id="currentWinner">Sin ganador aún</strong>
-        <button id="addWinnerBtn" class="control-btn gold">Agregar a la final</button>
+        <p>Ganador del match actual</p>
+        <strong id="currentWinner">Sin ganador todavía</strong>
+        <button id="addWinnerBtn" class="control-btn gold">Agregar a final</button>
       </div>
 
       <div>
-        <h4>👑 Equipos clasificados</h4>
+        <h4>Clasificados a la final</h4>
         <div id="finalistsList" class="finalists-list"></div>
       </div>
 
-      <button id="finalModeBtn" class="control-btn primary full">🏁 Modo Final</button>
-      <button id="championBtn" class="control-btn gold full">👑 Revelar Campeón</button>
+      <button id="finalModeBtn" class="control-btn primary full">🏆 Modo Final</button>
+      <button id="championBtn" class="control-btn gold full">Mostrar campeón</button>
     </section>
-
   </main>
 
-  <!-- CAMPEÓN -->
-  <section id="championOverlay" class="champion-overlay hidden">
+<section id="championOverlay" class="champion-overlay hidden">
     <div class="champion-card">
-      <p>🏆 CAMPEÓN DEL CONOCIMIENTO BÍBLICO 🏆</p>
-      <h2 id="championName">EQUIPO</h2>
+      <p>🏆 CAMPEÓN DE LAS OLIMPIADAS DE MATEMÁTICAS 🏆</p>
+      <h2 id="championName">TEAM</h2>
       <button id="closeChampionBtn" class="control-btn">Cerrar</button>
     </div>
     <canvas id="confetti"></canvas>
   </section>
 
-  <!-- CONFIGURACIÓN -->
   <dialog id="setupDialog" class="setup-dialog">
     <form method="dialog">
-      <h2>⚙️ Preparar equipos</h2>
-      <p>Define los equipos que participarán en el desafío bíblico.</p>
-
+      <h2>Configurar equipos</h2>
+      <p>Escribe los nombres de los equipos del match seleccionado.</p>
       <label>Equipo 1</label>
-      <input id="team1Input" type="text" placeholder="Ej: Jóvenes Luz" />
-
+      <input id="team1Input" type="text" placeholder="Primero A" />
       <label>Equipo 2</label>
-      <input id="team2Input" type="text" placeholder="Ej: Jóvenes Vida" />
-
+      <input id="team2Input" type="text" placeholder="Segundo A" />
       <label>Tiempo por pregunta</label>
       <input id="timerInput" type="number" min="5" max="60" value="15" />
-
       <div class="dialog-actions">
         <button value="cancel" class="ghost-btn">Cancelar</button>
         <button id="saveSetupBtn" value="default" class="control-btn primary">Guardar</button>
