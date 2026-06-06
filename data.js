@@ -6,6 +6,32 @@ const GAME_DATA = [
     defaultTeams: ["Equipo 1", "Equipo 2"],
     topics: ["Biblia"],
     questions: [
+
+      // S7
+      { type:"Biblia", visual:"📖", q:"¿Qué juez derrotó a los madianitas con 300 hombres?", a:"Gedeón" },
+      { type:"Biblia", visual:"📖", q:"¿Quién era la hermana de Moisés?", a:"Miriam" },
+      { type:"Biblia", visual:"📖", q:"¿Qué rey escribió gran parte de Proverbios?", a:"Salomón" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue levantado por Jesús después de cuatro días muerto?", a:"Lázaro" },
+      { type:"Biblia", visual:"📖", q:"¿Cuántos días ayunó Jesús en el desierto?", a:"40 días" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el primer mártir cristiano?", a:"Esteban" },
+      { type:"Biblia", visual:"📖", q:"¿Qué apóstol era médico?", a:"Lucas" },
+      { type:"Biblia", visual:"📖", q:"¿Quién escribió Apocalipsis?", a:"Juan" },
+      { type:"Biblia", visual:"📖", q:"¿Qué ciudad visitaba Pablo cuando se convirtió?", a:"Damasco" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el rey más joven al comenzar a reinar?", a:"Josías" },
+
+      // S12
+      { type:"Biblia", visual:"📖", q:"¿Qué mujer escondió a los espías en Jericó?", a:"Rahab" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el padre de Juan el Bautista?", a:"Zacarías" },
+      { type:"Biblia", visual:"📖", q:"¿Qué evangelio fue escrito por un médico?", a:"Lucas" },
+      { type:"Biblia", visual:"📖", q:"¿Quién cayó de un tercer piso mientras Pablo predicaba?", a:"Eutico" },
+      { type:"Biblia", visual:"📖", q:"¿Qué iglesia fue llamada tibia en Apocalipsis?", a:"Laodicea" },
+      { type:"Biblia", visual:"📖", q:"¿Quién interpretó la escritura en la pared para Belsasar?", a:"Daniel" },
+      { type:"Biblia", visual:"📖", q:"¿Qué discípulo reemplazó a Judas Iscariote?", a:"Matías" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el mandamiento más grande según Jesús?", a:"Amar a Dios con todo el corazón" },
+      { type:"Biblia", visual:"📖", q:"¿Qué ciudad celestial se describe al final de Apocalipsis?", a:"La Nueva Jerusalén" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue la esposa de Abraham?", a:"Sara" },
+
+      // S3
       { type:"Biblia", visual:"📖", q:"¿Cuántos libros tiene la Biblia?", a:"66" },
       { type:"Biblia", visual:"📖", q:"¿Cuál es el primer libro de la Biblia?", a:"Génesis" },
       { type:"Biblia", visual:"📖", q:"¿Cuál es el último libro de la Biblia?", a:"Apocalipsis" },
@@ -17,6 +43,19 @@ const GAME_DATA = [
       { type:"Biblia", visual:"📖", q:"¿Cuántos discípulos tuvo Jesús?", a:"12" },
       { type:"Biblia", visual:"📖", q:"¿Dónde nació Jesús?", a:"Belén" },
 
+      // S15
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el libro de la fe conocido por el capítulo 11?", a:"Hebreos" },
+      { type:"Biblia", visual:"📖", q:"¿Qué discípulo era hermano de Pedro?", a:"Andrés" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el primer rey de Israel?", a:"Saúl" },
+      { type:"Biblia", visual:"📖", q:"¿Qué profeta fue alimentado por cuervos?", a:"Elías" },
+      { type:"Biblia", visual:"📖", q:"¿Quién escribió el libro de Lamentaciones?", a:"Jeremías" },
+      { type:"Biblia", visual:"📖", q:"¿Qué apóstol era conocido como el discípulo amado?", a:"Juan" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el padre de Isaac?", a:"Abraham" },
+      { type:"Biblia", visual:"📖", q:"¿Qué juez tenía una fuerza extraordinaria en su cabello?", a:"Sansón" },
+      { type:"Biblia", visual:"📖", q:"¿Qué mujer llegó a ser bisabuela del rey David?", a:"Rut" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el sumo sacerdote cuando Jesús fue crucificado?", a:"Caifás" },
+
+      // S1
       { type:"Biblia", visual:"📖", q:"¿Quién bautizó a Jesús?", a:"Juan el Bautista" },
       { type:"Biblia", visual:"📖", q:"¿Quién fue el hombre más sabio?", a:"Salomón" },
       { type:"Biblia", visual:"📖", q:"¿Quién fue el hombre más fuerte?", a:"Sansón" },
@@ -28,28 +67,46 @@ const GAME_DATA = [
       { type:"Biblia", visual:"📖", q:"¿Quién subió al cielo en un carro de fuego?", a:"Elías" },
       { type:"Biblia", visual:"📖", q:"¿Quién escribió la mayoría de las epístolas del Nuevo Testamento?", a:"Pablo" },
 
-      { type:"Biblia", visual:"📖", q:"¿Cuál fue el primer milagro de Jesús?", a:"Convertir el agua en vino" },
-      { type:"Biblia", visual:"📖", q:"¿Cuántos panes y peces usó Jesús para alimentar a la multitud?", a:"5 panes y 2 peces" },
+      // S9
+      { type:"Biblia", visual:"📖", q:"¿Qué profeta vio un valle de huesos secos?", a:"Ezequiel" },
+      { type:"Biblia", visual:"📖", q:"¿Quién luchó con un ángel?", a:"Jacob" },
+      { type:"Biblia", visual:"📖", q:"¿Qué mujer fue jueza en Israel?", a:"Débora" },
+      { type:"Biblia", visual:"📖", q:"¿Quién se rebeló contra Moisés y fue tragado por la tierra?", a:"Coré" },
+      { type:"Biblia", visual:"📖", q:"¿Qué rey vio la escritura en la pared?", a:"Belsasar" },
+      { type:"Biblia", visual:"📖", q:"¿Quién encontró el libro de la ley en tiempos de Josías?", a:"Hilcías" },
+      { type:"Biblia", visual:"📖", q:"¿Cuántas veces rodeó Israel Jericó el séptimo día?", a:"7 veces" },
+      { type:"Biblia", visual:"📖", q:"¿Qué profeta fue llevado cautivo a Babilonia siendo joven?", a:"Daniel" },
+      { type:"Biblia", visual:"📖", q:"¿Quién ungió a David como rey?", a:"Samuel" },
+      { type:"Biblia", visual:"📖", q:"¿Quién sucedió a Moisés?", a:"Josué" },
+
+      // S11
+      { type:"Biblia", visual:"📖", q:"¿Quién dudó de la resurrección hasta ver a Jesús?", a:"Tomás" },
+      { type:"Biblia", visual:"📖", q:"¿En qué río fue bautizado Jesús?", a:"Jordán" },
+      { type:"Biblia", visual:"📖", q:"¿Quién escribió la mayoría de los Salmos?", a:"David" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el capítulo más largo de la Biblia?", a:"Salmo 119" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el libro más largo de la Biblia?", a:"Salmos" },
+      { type:"Biblia", visual:"📖", q:"¿Cuál es el libro más corto del Nuevo Testamento?", a:"3 Juan" },
+      { type:"Biblia", visual:"📖", q:"¿Quién era cobrador de impuestos y llegó a ser discípulo?", a:"Mateo" },
+      { type:"Biblia", visual:"📖", q:"¿Qué discípulo caminó sobre el agua con Jesús?", a:"Pedro" },
       { type:"Biblia", visual:"📖", q:"¿Quién era la madre de Jesús?", a:"María" },
       { type:"Biblia", visual:"📖", q:"¿Quién era el padre terrenal de Jesús?", a:"José" },
+
+      // S4
       { type:"Biblia", visual:"📖", q:"¿En qué monte recibió Moisés la ley?", a:"Monte Sinaí" },
       { type:"Biblia", visual:"📖", q:"¿Qué ciudad tenía murallas que cayeron al sonar trompetas?", a:"Jericó" },
       { type:"Biblia", visual:"📖", q:"¿Quién soñó con una escalera al cielo?", a:"Jacob" },
       { type:"Biblia", visual:"📖", q:"¿Quién vendió José por veinte piezas de plata?", a:"Sus hermanos" },
       { type:"Biblia", visual:"📖", q:"¿Cuántos años tenía Noé cuando vino el diluvio?", a:"600 años" },
       { type:"Biblia", visual:"📖", q:"¿Qué juez derrotó a los madianitas con 300 hombres?", a:"Gedeón" },
-
       { type:"Biblia", visual:"📖", q:"¿Quién fue la primera mujer?", a:"Eva" },
       { type:"Biblia", visual:"📖", q:"¿Quién fue el primer hombre?", a:"Adán" },
       { type:"Biblia", visual:"📖", q:"¿Qué rey lanzó a Daniel al foso de los leones?", a:"Darío" },
       { type:"Biblia", visual:"📖", q:"¿Quiénes fueron lanzados al horno de fuego?", a:"Sadrac, Mesac y Abed-nego" },
-      { type:"Biblia", visual:"📖", q:"¿Qué reina salvó al pueblo judío?", a:"Ester" },
-      { type:"Biblia", visual:"📖", q:"¿Quién reconstruyó los muros de Jerusalén?", a:"Nehemías" },
+
+      // S14
       { type:"Biblia", visual:"📖", q:"¿Quién era el suegro de Moisés?", a:"Jetro" },
       { type:"Biblia", visual:"📖", q:"¿Qué profeta desafió a los profetas de Baal en el monte Carmelo?", a:"Elías" },
       { type:"Biblia", visual:"📖", q:"¿Quién escribió muchos de los Salmos?", a:"David" },
-      { type:"Biblia", visual:"📖", q:"¿Cuál es el capítulo más largo de la Biblia?", a:"Salmo 119" },
-
       { type:"Biblia", visual:"📖", q:"¿Cuál es el libro más largo de la Biblia?", a:"Salmos" },
       { type:"Biblia", visual:"📖", q:"¿Cuál es el libro más corto del Nuevo Testamento?", a:"3 Juan" },
       { type:"Biblia", visual:"📖", q:"¿Quién era cobrador de impuestos y llegó a ser discípulo?", a:"Mateo" },
@@ -57,10 +114,23 @@ const GAME_DATA = [
       { type:"Biblia", visual:"📖", q:"¿Quién dudó de la resurrección hasta ver a Jesús?", a:"Tomás" },
       { type:"Biblia", visual:"📖", q:"¿En qué río fue bautizado Jesús?", a:"Jordán" },
       { type:"Biblia", visual:"📖", q:"¿Quién era la hermana de Moisés?", a:"Miriam" },
+
+      // S2
+      { type:"Biblia", visual:"📖", q:"¿Qué apóstol escribió sobre la armadura de Dios?", a:"Pablo" },
+      { type:"Biblia", visual:"📖", q:"¿Quién dijo: Heme aquí, envíame a mí?", a:"Isaías" },
+      { type:"Biblia", visual:"📖", q:"¿Qué rey pidió sabiduría a Dios?", a:"Salomón" },
+      { type:"Biblia", visual:"📖", q:"¿Qué mujer escondió a los espías en Jericó?", a:"Rahab" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el padre de Juan el Bautista?", a:"Zacarías" },
+      { type:"Biblia", visual:"📖", q:"¿Qué evangelio fue escrito por un médico?", a:"Lucas" },
+      { type:"Biblia", visual:"📖", q:"¿Quién cayó de un tercer piso mientras Pablo predicaba?", a:"Eutico" },
+      { type:"Biblia", visual:"📖", q:"¿Qué iglesia fue llamada tibia en Apocalipsis?", a:"Laodicea" },
+      { type:"Biblia", visual:"📖", q:"¿Quién interpretó la escritura en la pared para Belsasar?", a:"Daniel" },
+      { type:"Biblia", visual:"📖", q:"¿Qué discípulo reemplazó a Judas Iscariote?", a:"Matías" },
+
+      // S8
       { type:"Biblia", visual:"📖", q:"¿Qué rey escribió gran parte de Proverbios?", a:"Salomón" },
       { type:"Biblia", visual:"📖", q:"¿Quién fue levantado por Jesús después de cuatro días muerto?", a:"Lázaro" },
       { type:"Biblia", visual:"📖", q:"¿Cuántos días ayunó Jesús en el desierto?", a:"40 días" },
-
       { type:"Biblia", visual:"📖", q:"¿Quién fue el primer mártir cristiano?", a:"Esteban" },
       { type:"Biblia", visual:"📖", q:"¿Qué apóstol era médico?", a:"Lucas" },
       { type:"Biblia", visual:"📖", q:"¿Quién escribió Apocalipsis?", a:"Juan" },
@@ -68,32 +138,9 @@ const GAME_DATA = [
       { type:"Biblia", visual:"📖", q:"¿Quién fue el rey más joven al comenzar a reinar?", a:"Josías" },
       { type:"Biblia", visual:"📖", q:"¿Qué profeta vio un valle de huesos secos?", a:"Ezequiel" },
       { type:"Biblia", visual:"📖", q:"¿Quién luchó con un ángel?", a:"Jacob" },
-      { type:"Biblia", visual:"📖", q:"¿Qué mujer fue jueza en Israel?", a:"Débora" },
-      { type:"Biblia", visual:"📖", q:"¿Quién se rebeló contra Moisés y fue tragado por la tierra?", a:"Coré" },
-      { type:"Biblia", visual:"📖", q:"¿Qué rey vio la escritura en la pared?", a:"Belsasar" },
 
-      { type:"Biblia", visual:"📖", q:"¿Quién encontró el libro de la ley en tiempos de Josías?", a:"Hilcías" },
-      { type:"Biblia", visual:"📖", q:"¿Cuántas veces rodeó Israel Jericó el séptimo día?", a:"7 veces" },
-      { type:"Biblia", visual:"📖", q:"¿Qué profeta fue llevado cautivo a Babilonia siendo joven?", a:"Daniel" },
-      { type:"Biblia", visual:"📖", q:"¿Quién ungió a David como rey?", a:"Samuel" },
-      { type:"Biblia", visual:"📖", q:"¿Quién sucedió a Moisés?", a:"Josué" },
-      { type:"Biblia", visual:"📖", q:"¿Qué apóstol escribió sobre la armadura de Dios?", a:"Pablo" },
-      { type:"Biblia", visual:"📖", q:"¿Quién dijo: Heme aquí, envíame a mí?", a:"Isaías" },
-      { type:"Biblia", visual:"📖", q:"¿Qué rey pidió sabiduría a Dios?", a:"Salomón" },
-      { type:"Biblia", visual:"📖", q:"¿Qué mujer escondió a los espías en Jericó?", a:"Rahab" },
-      { type:"Biblia", visual:"📖", q:"¿Quién fue el padre de Juan el Bautista?", a:"Zacarías" },
-
-      { type:"Biblia", visual:"📖", q:"¿Qué evangelio fue escrito por un médico?", a:"Lucas" },
-      { type:"Biblia", visual:"📖", q:"¿Quién cayó de un tercer piso mientras Pablo predicaba?", a:"Eutico" },
-      { type:"Biblia", visual:"📖", q:"¿Qué iglesia fue llamada tibia en Apocalipsis?", a:"Laodicea" },
-      { type:"Biblia", visual:"📖", q:"¿Quién interpretó la escritura en la pared para Belsasar?", a:"Daniel" },
-      { type:"Biblia", visual:"📖", q:"¿Qué discípulo reemplazó a Judas Iscariote?", a:"Matías" },
-      { type:"Biblia", visual:"📖", q:"¿Cuál es el mandamiento más grande según Jesús?", a:"Amar a Dios con todo el corazón" },
-      { type:"Biblia", visual:"📖", q:"¿Qué ciudad celestial se describe al final de Apocalipsis?", a:"La Nueva Jerusalén" },
-      { type:"Biblia", visual:"📖", q:"¿Quién fue la esposa de Abraham?", a:"Sara" },
-      { type:"Biblia", visual:"📖", q:"¿Quién interpretó los sueños de sus compañeros en la cárcel?", a:"José" },
+      // S13
       { type:"Biblia", visual:"📖", q:"¿Cuál es el libro de la fe conocido por el capítulo 11?", a:"Hebreos" },
-
       { type:"Biblia", visual:"📖", q:"¿Qué discípulo era hermano de Pedro?", a:"Andrés" },
       { type:"Biblia", visual:"📖", q:"¿Quién fue el primer rey de Israel?", a:"Saúl" },
       { type:"Biblia", visual:"📖", q:"¿Qué profeta fue alimentado por cuervos?", a:"Elías" },
@@ -103,7 +150,43 @@ const GAME_DATA = [
       { type:"Biblia", visual:"📖", q:"¿Qué juez tenía una fuerza extraordinaria en su cabello?", a:"Sansón" },
       { type:"Biblia", visual:"📖", q:"¿Qué mujer llegó a ser bisabuela del rey David?", a:"Rut" },
       { type:"Biblia", visual:"📖", q:"¿Quién fue el sumo sacerdote cuando Jesús fue crucificado?", a:"Caifás" },
-      { type:"Biblia", visual:"📖", q:"¿Cuál es el nombre del monte donde reposó el arca?", a:"Ararat" }
+
+      // S6
+      { type:"Biblia", visual:"📖", q:"¿Quién fue la madre de Jesús?", a:"María" },
+      { type:"Biblia", visual:"📖", q:"¿Quién era el padre terrenal de Jesús?", a:"José" },
+      { type:"Biblia", visual:"📖", q:"¿En qué monte recibió Moisés la ley?", a:"Monte Sinaí" },
+      { type:"Biblia", visual:"📖", q:"¿Qué ciudad tenía murallas que cayeron al sonar trompetas?", a:"Jericó" },
+      { type:"Biblia", visual:"📖", q:"¿Quién soñó con una escalera al cielo?", a:"Jacob" },
+      { type:"Biblia", visual:"📖", q:"¿Quién vendió José por veinte piezas de plata?", a:"Sus hermanos" },
+      { type:"Biblia", visual:"📖", q:"¿Cuántos años tenía Noé cuando vino el diluvio?", a:"600 años" },
+      { type:"Biblia", visual:"📖", q:"¿Qué juez derrotó a los madianitas con 300 hombres?", a:"Gedeón" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue la primera mujer?", a:"Eva" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el primer hombre?", a:"Adán" },
+
+      // S10
+      { type:"Biblia", visual:"📖", q:"¿Qué rey lanzó a Daniel al foso de los leones?", a:"Darío" },
+      { type:"Biblia", visual:"📖", q:"¿Quiénes fueron lanzados al horno de fuego?", a:"Sadrac, Mesac y Abed-nego" },
+      { type:"Biblia", visual:"📖", q:"¿Qué apóstol escribió sobre la armadura de Dios?", a:"Pablo" },
+      { type:"Biblia", visual:"📖", q:"¿Quién dijo: Heme aquí, envíame a mí?", a:"Isaías" },
+      { type:"Biblia", visual:"📖", q:"¿Qué rey pidió sabiduría a Dios?", a:"Salomón" },
+      { type:"Biblia", visual:"📖", q:"¿Qué mujer escondió a los espías en Jericó?", a:"Rahab" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el padre de Juan el Bautista?", a:"Zacarías" },
+      { type:"Biblia", visual:"📖", q:"¿Qué evangelio fue escrito por un médico?", a:"Lucas" },
+      { type:"Biblia", visual:"📖", q:"¿Quién cayó de un tercer piso mientras Pablo predicaba?", a:"Eutico" },
+      { type:"Biblia", visual:"📖", q:"¿Qué iglesia fue llamada tibia en Apocalipsis?", a:"Laodicea" },
+
+      // S5
+      { type:"Biblia", visual:"📖", q:"¿Cuántos panes y peces usó Jesús para alimentar a la multitud?", a:"5 panes y 2 peces" },
+      { type:"Biblia", visual:"📖", q:"¿Quién era la madre de Jesús?", a:"María" },
+      { type:"Biblia", visual:"📖", q:"¿Quién era el padre terrenal de Jesús?", a:"José" },
+      { type:"Biblia", visual:"📖", q:"¿En qué río fue bautizado Jesús?", a:"Jordán" },
+      { type:"Biblia", visual:"📖", q:"¿Quién era la hermana de Moisés?", a:"Miriam" },
+      { type:"Biblia", visual:"📖", q:"¿Qué rey escribió gran parte de Proverbios?", a:"Salomón" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue levantado por Jesús después de cuatro días muerto?", a:"Lázaro" },
+      { type:"Biblia", visual:"📖", q:"¿Cuántos días ayunó Jesús en el desierto?", a:"40 días" },
+      { type:"Biblia", visual:"📖", q:"¿Quién fue el primer mártir cristiano?", a:"Esteban" },
+      { type:"Biblia", visual:"📖", q:"¿Qué apóstol era médico?", a:"Lucas" }
+
     ]
   }
 ];
