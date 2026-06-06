@@ -1,2086 +1,231 @@
+/* ==========================================================
+   TV SHOW MODE — FINAL CLEAN SYSTEM
+   ========================================================== */
+
 :root{
-  --bg:#060713;
-  --panel:rgba(255,255,255,.09);
-  --panel-strong:rgba(255,255,255,.14);
-  --text:#ffffff;
-  --muted:#b9c3ff;
+  --bg:#02040f;
+  --panel:rgba(10,14,30,.72);
+  --glass:rgba(255,255,255,.06);
+
   --cyan:#00d9ff;
   --pink:#ff3df2;
   --gold:#ffd166;
-  --green:#22c55e;
-  --red:#ef4444;
-  --blue:#3b82f6;
+  --red:#ff2d2d;
+  --blue:#008cff;
+
+  --text:#ffffff;
+  --muted:#9fb3ff;
 }
 
-*{box-sizing:border-box}
+/* ================= BACKGROUND (ESTUDIO TV) ================= */
 
 body{
   margin:0;
   min-height:100vh;
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--text);
+  font-family:Inter,system-ui;
+
   background:
-    radial-gradient(circle at 20% 20%, rgba(0,217,255,.22), transparent 28%),
-    radial-gradient(circle at 80% 15%, rgba(255,61,242,.18), transparent 26%),
-    radial-gradient(circle at 50% 80%, rgba(255,209,102,.13), transparent 28%),
-    linear-gradient(135deg,#050614,#101634 55%,#050614);
-  overflow-x:hidden;
+    radial-gradient(circle at 50% 10%, rgba(0,217,255,.12), transparent 45%),
+    radial-gradient(circle at 20% 30%, rgba(255,61,242,.10), transparent 50%),
+    radial-gradient(circle at 80% 30%, rgba(255,209,102,.08), transparent 55%),
+    linear-gradient(135deg,#02040f,#050818,#0a0620);
+
+  overflow:hidden;
 }
 
-.stage-glow{
+/* LIVE INDICATOR */
+body::after{
+  content:"● LIVE SHOW";
   position:fixed;
-  inset:auto 0 0 0;
-  height:180px;
-  background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),transparent);
-  filter:blur(80px);
-  opacity:.35;
-  pointer-events:none;
-}
+  top:18px;
+  right:18px;
+  padding:8px 14px;
+  border-radius:999px;
 
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:22px 32px;
-  gap:20px;
-}
-
-.eyebrow{
-  margin:0;
-  color:var(--cyan);
   font-weight:900;
-  letter-spacing:.18em;
-  text-transform:uppercase;
   font-size:12px;
+  letter-spacing:.2em;
+
+  background:rgba(0,0,0,.6);
+  color:#ff2d2d;
+
+  border:1px solid rgba(255,45,45,.5);
+  animation:blink 1.2s infinite;
+  z-index:9999;
 }
 
-h1{
-  margin:2px 0 0;
-  font-size:clamp(34px,5vw,68px);
-  text-transform:uppercase;
-  line-height:.9;
-  text-shadow:0 0 30px rgba(0,217,255,.6);
+@keyframes blink{
+  50%{opacity:.5}
 }
 
-h2,h3,h4,p{margin-top:0}
-
-.top-actions{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-select,input{
-  border:1px solid rgba(255,255,255,.25);
-  background:rgba(0,0,0,.35);
-  color:white;
-  border-radius:14px;
-  padding:12px 14px;
-  font-weight:700;
-}
-
-select{max-width:260px}
-
-button{
-  cursor:pointer;
-  border:0;
-  color:white;
-  font-weight:900;
-}
-
-.ghost-btn,.small-btn,.control-btn,.timer-btn{
-  border-radius:16px;
-  padding:12px 16px;
-  background:rgba(255,255,255,.13);
-  border:1px solid rgba(255,255,255,.18);
-  transition:.18s ease;
-  box-shadow:0 12px 30px rgba(0,0,0,.18);
-}
-
-button:hover{transform:translateY(-2px);filter:brightness(1.12)}
-
-.app-shell{
-  display:grid;
-  grid-template-columns:300px minmax(420px,1fr) 300px;
-  gap:20px;
-  padding:0 32px 32px;
-}
+/* ================= GLASS PANEL ================= */
 
 .glass{
   background:var(--panel);
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:28px;
-  backdrop-filter:blur(18px);
-  box-shadow:0 30px 80px rgba(0,0,0,.28);
-}
-
-.score-panel,.game-panel,.final-panel{padding:22px}
-
-.panel-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:16px;
-  font-weight:900;
-  text-transform:uppercase;
-}
-
-.panel-title small{color:var(--muted);font-size:11px}
-
-.teams-container{
-  display:grid;
-  gap:14px;
-}
-
-.team-card{
-  position:relative;
-  padding:18px;
-  border-radius:22px;
-  background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
-  border:2px solid transparent;
-  overflow:hidden;
-}
-
-.team-card.selected{
-  border-color:var(--gold);
-  box-shadow:0 0 30px rgba(255,209,102,.36);
-}
-
-.team-card::before{
-  content:"";
-  position:absolute;
-  inset:0 auto 0 0;
-  width:7px;
-  background:var(--team-color,var(--cyan));
-}
-
-.team-name{
-  font-size:20px;
-  font-weight:950;
-  text-transform:uppercase;
-}
-
-.team-score{
-  font-size:64px;
-  line-height:1;
-  font-weight:1000;
-  margin-top:8px;
-}
-
-.score-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:8px;
-  margin:14px 0;
-}
-
-.success{background:linear-gradient(135deg,#16a34a,#22c55e)!important}
-.danger{background:linear-gradient(135deg,#dc2626,#ef4444)!important}
-.primary{background:linear-gradient(135deg,#2563eb,#00d9ff)!important}
-.gold{background:linear-gradient(135deg,#f59e0b,#ffd166)!important;color:#1b1300!important}
-
-.selected-team-card{
-  padding:14px;
-  border-radius:18px;
-  background:rgba(0,0,0,.22);
-}
-
-.selected-team-card small{color:var(--muted)}
-.selected-team-card strong{display:block;font-size:20px;margin:4px 0;text-transform:uppercase}
-.selected-team-card p{font-size:12px;color:#dce3ff;margin-bottom:0}
-
-.round-row{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:flex-start;
-}
-
-.round-row h2{
-  font-size:clamp(24px,3vw,44px);
-  margin:0;
-}
-
-.timer-wrap{text-align:center}
-.timer{
-  width:90px;
-  height:90px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  border:5px solid var(--cyan);
-  font-size:42px;
-  font-weight:1000;
-  box-shadow:0 0 34px rgba(0,217,255,.36);
-  margin:auto auto 8px;
-}
-
-.timer.warning{
-  border-color:var(--red);
-  animation:pulse .45s infinite alternate;
-}
-
-@keyframes pulse{
-  from{transform:scale(1)}
-  to{transform:scale(1.08);box-shadow:0 0 38px rgba(239,68,68,.8)}
-}
-
-.question-card{
-  position:relative;
-  min-height:370px;
-  margin:18px 0;
-  padding:30px;
-  border-radius:32px;
-  background:
-    linear-gradient(135deg,rgba(0,217,255,.20),rgba(255,61,242,.12)),
-    rgba(0,0,0,.28);
-  border:1px solid rgba(255,255,255,.14);
-  display:grid;
-  place-items:center;
-  text-align:center;
-  overflow:hidden;
-}
-
-.question-card::after{
-  content:"";
-  position:absolute;
-  width:260px;
-  height:260px;
-  background:radial-gradient(circle,rgba(255,255,255,.22),transparent 65%);
-  right:-80px;
-  top:-80px;
-  border-radius:50%;
-}
-
-.visual{
-  font-size:96px;
-  filter:drop-shadow(0 14px 20px rgba(0,0,0,.35));
-  animation:float 2.8s ease-in-out infinite;
-}
-
-@keyframes float{
-  0%,100%{transform:translateY(0) rotate(-2deg)}
-  50%{transform:translateY(-10px) rotate(2deg)}
-}
-
-.question-type{
-  margin:10px 0;
-  color:var(--gold);
-  font-weight:950;
-  text-transform:uppercase;
-  letter-spacing:.14em;
-}
-
-.question-card h3{
-  font-size:clamp(28px,4.4vw,58px);
-  line-height:1.02;
-  margin:0;
-  max-width:900px;
-  text-wrap:balance;
-}
-
-.answer-box{
-  margin-top:20px;
-  padding:14px 20px;
-  border-radius:20px;
-  background:rgba(0,0,0,.45);
-  font-size:22px;
-}
-
-.answer-box span{color:var(--muted)}
-.answer-box strong{color:var(--gold);margin-left:8px}
-
-.hidden{display:none!important}
-
-.host-controls{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:10px;
-}
-
-.progress-wrap{margin-top:18px}
-.progress-label{
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font-size:13px;
-  font-weight:800;
-  margin-bottom:8px;
-}
-
-.progress-bar{
-  height:12px;
-  background:rgba(255,255,255,.12);
-  border-radius:99px;
-  overflow:hidden;
-}
-
-#progressFill{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,var(--cyan),var(--pink),var(--gold));
-  transition:.25s ease;
-}
-
-.winner-box{
-  background:rgba(0,0,0,.24);
-  border-radius:22px;
-  padding:16px;
-  margin-bottom:18px;
-}
-
-.winner-box p{color:var(--muted);font-size:13px;margin-bottom:6px}
-.winner-box strong{font-size:26px;display:block;margin-bottom:12px}
-
-.finalists-list{
-  display:grid;
-  gap:8px;
-  margin-bottom:14px;
-}
-
-.finalist{
-  padding:10px 12px;
-  border-radius:14px;
-  background:rgba(255,255,255,.12);
-  font-weight:900;
-}
-
-.full{width:100%;margin-top:8px}
-
-.champion-overlay{
-  position:fixed;
-  inset:0;
-  z-index:30;
-  display:grid;
-  place-items:center;
-  background:rgba(0,0,0,.76);
-}
-
-.champion-card{
-  position:relative;
-  z-index:2;
-  width:min(780px,90vw);
-  padding:50px;
-  border-radius:40px;
-  text-align:center;
-  background:linear-gradient(135deg,rgba(255,209,102,.98),rgba(255,61,242,.9),rgba(0,217,255,.9));
-  box-shadow:0 0 120px rgba(255,209,102,.45);
-  color:white;
-  animation:pop .45s ease;
-}
-
-@keyframes pop{
-  from{transform:scale(.8);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-
-.champion-card p{font-size:28px;font-weight:1000}
-.champion-card h2{
-  font-size:clamp(48px,9vw,110px);
-  margin:12px 0 28px;
-  text-transform:uppercase;
-  text-shadow:0 10px 30px rgba(0,0,0,.35);
-}
-
-#confetti{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-}
-
-.setup-dialog{
-  border:0;
-  border-radius:28px;
-  padding:0;
-  color:white;
-  background:#101634;
-  box-shadow:0 40px 140px rgba(0,0,0,.55);
-}
-
-.setup-dialog form{
-  width:min(460px,92vw);
-  padding:26px;
-  display:grid;
-  gap:10px;
-}
-
-.setup-dialog::backdrop{background:rgba(0,0,0,.65)}
-.setup-dialog label{font-weight:900;color:var(--muted)}
-.dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}
-
-@media (max-width:1100px){
-  .app-shell{grid-template-columns:1fr}
-  .host-controls{grid-template-columns:1fr 1fr}
-  .topbar{align-items:flex-start;flex-direction:column}
-}
-
-@media (max-width:640px){
-  .topbar,.app-shell{padding-left:16px;padding-right:16px}
-  .host-controls{grid-template-columns:1fr}
-  .round-row{flex-direction:column}
-}
-
-
-/* --- Enhanced feedback effects --- */
-.question-card.correct-flash{
-  animation:correctBurst .85s ease;
-  border-color:rgba(34,197,94,.9);
-  box-shadow:0 0 70px rgba(34,197,94,.55), inset 0 0 40px rgba(34,197,94,.18);
-}
-
-.question-card.wrong-flash{
-  animation:wrongShake .7s ease;
-  border-color:rgba(239,68,68,.95);
-  box-shadow:0 0 70px rgba(239,68,68,.50), inset 0 0 40px rgba(239,68,68,.18);
-}
-
-@keyframes correctBurst{
-  0%{transform:scale(1)}
-  35%{transform:scale(1.035) rotate(.4deg)}
-  65%{transform:scale(.992) rotate(-.25deg)}
-  100%{transform:scale(1)}
-}
-
-@keyframes wrongShake{
-  0%,100%{transform:translateX(0)}
-  15%{transform:translateX(-13px)}
-  30%{transform:translateX(13px)}
-  45%{transform:translateX(-10px)}
-  60%{transform:translateX(10px)}
-  75%{transform:translateX(-5px)}
-}
-
-.feedback-badge{
-  position:absolute;
-  z-index:5;
-  top:22px;
-  left:50%;
-  transform:translateX(-50%) scale(.8);
-  padding:13px 26px;
-  border-radius:999px;
-  font-size:clamp(22px,3.5vw,46px);
-  font-weight:1000;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  opacity:0;
-  pointer-events:none;
-  text-shadow:0 6px 22px rgba(0,0,0,.35);
-}
-
-.feedback-badge.show{
-  animation:badgePop 1.05s ease forwards;
-}
-
-.feedback-badge.correct{
-  background:linear-gradient(135deg,#16a34a,#22c55e,#a7f3d0);
-  color:white;
-  box-shadow:0 0 48px rgba(34,197,94,.70);
-}
-
-.feedback-badge.wrong{
-  background:linear-gradient(135deg,#7f1d1d,#ef4444,#fb7185);
-  color:white;
-  box-shadow:0 0 48px rgba(239,68,68,.70);
-}
-
-@keyframes badgePop{
-  0%{opacity:0;transform:translateX(-50%) scale(.6) translateY(-18px)}
-  20%{opacity:1;transform:translateX(-50%) scale(1.12) translateY(0)}
-  72%{opacity:1;transform:translateX(-50%) scale(1)}
-  100%{opacity:0;transform:translateX(-50%) scale(.92) translateY(-10px)}
-}
-
-.card-confetti{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:4;
-  pointer-events:none;
-}
-
-.wrong-overlay{
-  position:absolute;
-  inset:0;
-  z-index:4;
-  display:grid;
-  place-items:center;
-  pointer-events:none;
-  background:radial-gradient(circle,rgba(239,68,68,.30),transparent 55%);
-  font-size:clamp(52px,10vw,140px);
-  font-weight:1000;
-  opacity:0;
-}
-
-.wrong-overlay.show{
-  animation:wrongMark 1s ease forwards;
-}
-
-@keyframes wrongMark{
-  0%{opacity:0;transform:scale(.5) rotate(-12deg)}
-  25%{opacity:1;transform:scale(1.12) rotate(5deg)}
-  70%{opacity:1;transform:scale(1) rotate(0)}
-  100%{opacity:0;transform:scale(.88) rotate(0)}
-}
-
-
-/* --- Mouse buzzer mode --- */
-.buzzer-status{
-  position:absolute;
-  z-index:6;
-  bottom:22px;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(92%, 760px);
-  padding:12px 18px;
-  border-radius:999px;
-  text-align:center;
-  font-weight:1000;
-  letter-spacing:.04em;
-  text-transform:uppercase;
-  box-shadow:0 12px 40px rgba(0,0,0,.35);
-  border:1px solid rgba(255,255,255,.25);
-}
-
-.buzzer-status.listening{
-  background:linear-gradient(135deg,rgba(0,217,255,.28),rgba(255,61,242,.22));
-  color:#ffffff;
-  animation:buzzerListening .8s ease-in-out infinite alternate;
-}
-
-.buzzer-status.locked{
-  color:white;
-  animation:buzzerLocked .6s ease;
-}
-
-.buzzer-status.team-1{
-  background:linear-gradient(135deg,#0891b2,#00d9ff);
-}
-
-.buzzer-status.team-2{
-  background:linear-gradient(135deg,#be185d,#ff3df2);
-}
-
-@keyframes buzzerListening{
-  from{box-shadow:0 0 22px rgba(0,217,255,.30)}
-  to{box-shadow:0 0 42px rgba(255,61,242,.48)}
-}
-
-@keyframes buzzerLocked{
-  0%{transform:translateX(-50%) scale(.88);opacity:.2}
-  45%{transform:translateX(-50%) scale(1.08);opacity:1}
-  100%{transform:translateX(-50%) scale(1);opacity:1}
-}
-
-
-/* --- v6: buzzer alert moved to top so it does not cover the question --- */
-.question-card .buzzer-status{
-  top:18px;
-  bottom:auto;
-  width:min(88%, 860px);
-  padding:13px 22px;
-  font-size:clamp(13px,1.6vw,20px);
-  border:2px solid rgba(255,255,255,.35);
-}
-
-.question-card .buzzer-status.listening{
-  background:linear-gradient(90deg,rgba(0,217,255,.95),rgba(37,99,235,.88),rgba(255,61,242,.88));
-  box-shadow:0 0 38px rgba(0,217,255,.45), 0 16px 40px rgba(0,0,0,.35);
-}
-
-.question-card .buzzer-status.locked{
-  font-size:clamp(16px,2.4vw,30px);
-  padding:15px 28px;
-  box-shadow:0 0 55px rgba(255,209,102,.48), 0 16px 45px rgba(0,0,0,.42);
-}
-
-.question-card .buzzer-status.locked::before,
-.question-card .buzzer-status.locked::after{
-  content:"⚡";
-  margin:0 12px;
-}
-
-
-/* --- v7: buzzer alert in header between versus title and timer --- */
-.round-row{
-  align-items:center;
-}
-
-.top-buzzer{
-  position:static !important;
-  transform:none !important;
-  width:min(48vw, 620px) !important;
-  max-width:620px;
-  margin:0 auto;
-  bottom:auto !important;
-  top:auto !important;
-  left:auto !important;
-  padding:14px 22px;
-  border-radius:999px;
-  text-align:center;
-  font-size:clamp(15px,1.7vw,26px);
-  line-height:1.1;
-}
-
-.top-buzzer.listening{
-  background:linear-gradient(90deg,rgba(0,217,255,.95),rgba(37,99,235,.88),rgba(255,61,242,.88));
-  box-shadow:0 0 38px rgba(0,217,255,.45), 0 16px 40px rgba(0,0,0,.35);
-}
-
-.top-buzzer.locked{
-  background:linear-gradient(90deg,#c9186a,#ff3df2,#ff6fd8);
-  color:#ffffff;
-  border:2px solid rgba(255,255,255,.38);
-  box-shadow:0 0 55px rgba(255,61,242,.45), 0 16px 45px rgba(0,0,0,.42);
-  font-weight:1000;
-}
-
-.top-buzzer.locked::before,
-.top-buzzer.locked::after{
-  content:"⚡";
-  margin:0 12px;
-}
-
-@media (max-width:1100px){
-  .top-buzzer{
-    width:100% !important;
-    margin:12px 0;
-  }
-}
-
-
-/* --- v8: exact position between versus title and timer --- */
-.round-row{
-  display:grid !important;
-  grid-template-columns: 1fr auto auto !important;
-  align-items:center !important;
-  gap:22px !important;
-}
-
-.round-row > div:first-child{
-  min-width:320px;
-}
-
-.top-buzzer{
-  position:relative !important;
-  top:auto !important;
-  bottom:auto !important;
-  left:auto !important;
-  right:auto !important;
-  transform:none !important;
-
-  display:flex !important;
-  align-items:center;
-  justify-content:center;
-
-  width:min(34vw, 520px) !important;
-  min-height:72px;
-
-  margin:0 !important;
-
-  z-index:20 !important;
-
-  align-self:center !important;
-  justify-self:center !important;
-
-  border-radius:999px !important;
-}
-
-.timer-wrap{
-  justify-self:end !important;
-}
-
-@media (max-width:1100px){
-  .round-row{
-    grid-template-columns:1fr !important;
-  }
-
-  .top-buzzer{
-    width:100% !important;
-    order:2;
-  }
-
-  .timer-wrap{
-    justify-self:start !important;
-  }
-}
-
-
-/* ===== FINAL FIX TOP BUZZER ===== */
-
-.top-buzzer{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-
-  min-width:320px;
-  max-width:520px;
-  min-height:72px;
-
-  padding:14px 28px !important;
-
-  border-radius:999px !important;
-
-  background:linear-gradient(
-    90deg,
-    #c9186a,
-    #ff3df2,
-    #ff6fd8
-  ) !important;
-
-  color:white !important;
-
-  font-size:clamp(18px,1.8vw,30px) !important;
-  font-weight:1000 !important;
-  text-transform:uppercase !important;
-  letter-spacing:.04em !important;
-
-  border:2px solid rgba(255,255,255,.35) !important;
-
-  box-shadow:
-    0 0 45px rgba(255,61,242,.45),
-    0 18px 45px rgba(0,0,0,.35) !important;
-
-  animation:buzzerPop .45s ease !important;
-
-  position:relative !important;
-  top:auto !important;
-  bottom:auto !important;
-  left:auto !important;
-  transform:none !important;
-
-  margin:0 auto !important;
-  z-index:50 !important;
-}
-
-.top-buzzer.hidden{
-  display:none !important;
-}
-
-.round-row{
-  display:grid !important;
-  grid-template-columns: 1fr auto auto !important;
-  align-items:center !important;
-  gap:24px !important;
-}
-
-.timer-wrap{
-  justify-self:end !important;
-}
-
-@keyframes buzzerPop{
-  0%{
-    transform:scale(.8);
-    opacity:0;
-  }
-
-  100%{
-    transform:scale(1);
-    opacity:1;
-  }
-}
-
-@media (max-width:1100px){
-  .round-row{
-    grid-template-columns:1fr !important;
-  }
-
-  .top-buzzer{
-    width:100% !important;
-  }
-}
-
-
-/* --- v11: team colors for buzzer alert and fast center flash --- */
-.top-buzzer.team-1{
-  background:linear-gradient(90deg,#0284c7,#00d9ff,#2563eb) !important;
-  box-shadow:0 0 45px rgba(0,217,255,.55), 0 18px 45px rgba(0,0,0,.35) !important;
-}
-
-.top-buzzer.team-2{
-  background:linear-gradient(90deg,#c9186a,#ff3df2,#ff6fd8) !important;
-  box-shadow:0 0 45px rgba(255,61,242,.55), 0 18px 45px rgba(0,0,0,.35) !important;
-}
-
-.team-card:nth-child(1){
-  border-color:rgba(0,217,255,.75);
-  box-shadow:0 0 28px rgba(0,217,255,.18);
-}
-
-.team-card:nth-child(2){
-  border-color:rgba(255,61,242,.75);
-  box-shadow:0 0 28px rgba(255,61,242,.18);
-}
-
-.buzz-center-flash{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  display:grid;
-  place-items:center;
-  pointer-events:none;
-  background:rgba(0,0,0,.18);
-  animation:buzzFlashIn .18s ease-out forwards;
-}
-
-.buzz-center-flash.hide{
-  animation:buzzFlashOut .35s ease-in forwards;
-}
-
-.buzz-center-card{
-  width:min(760px,88vw);
-  min-height:240px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  text-align:center;
-  border-radius:44px;
-  border:3px solid rgba(255,255,255,.42);
-  box-shadow:0 0 95px rgba(255,255,255,.25), 0 35px 100px rgba(0,0,0,.55);
-  text-transform:uppercase;
-  transform:scale(.82);
-  animation:buzzCardPop .45s cubic-bezier(.18,1.35,.32,1) forwards;
-}
-
-.buzz-center-flash.team-1 .buzz-center-card{
-  background:linear-gradient(135deg,#0284c7,#00d9ff,#2563eb);
-  box-shadow:0 0 110px rgba(0,217,255,.72), 0 35px 100px rgba(0,0,0,.55);
-}
-
-.buzz-center-flash.team-2 .buzz-center-card{
-  background:linear-gradient(135deg,#c9186a,#ff3df2,#ff6fd8);
-  box-shadow:0 0 110px rgba(255,61,242,.72), 0 35px 100px rgba(0,0,0,.55);
-}
-
-.buzz-center-card span{
-  font-size:clamp(48px,7vw,96px);
-  line-height:1;
-}
-
-.buzz-center-card strong{
-  font-size:clamp(44px,7vw,108px);
-  line-height:.9;
-  font-weight:1000;
-  color:#fff;
-  text-shadow:0 10px 30px rgba(0,0,0,.35);
-}
-
-.buzz-center-card small{
-  font-size:clamp(18px,2.2vw,34px);
-  font-weight:1000;
-  color:#fff;
-  opacity:.95;
-}
-
-@keyframes buzzFlashIn{
-  from{opacity:0}
-  to{opacity:1}
-}
-
-@keyframes buzzFlashOut{
-  from{opacity:1}
-  to{opacity:0}
-}
-
-@keyframes buzzCardPop{
-  0%{transform:scale(.72) rotate(-2deg); opacity:0}
-  55%{transform:scale(1.08) rotate(1deg); opacity:1}
-  100%{transform:scale(1) rotate(0); opacity:1}
-}
-
-
-/* ==========================================================
-   v12 DESIGN ONLY: TV show neon interface
-   Logic remains unchanged.
-   ========================================================== */
-
-body{
-  background:
-    radial-gradient(circle at 12% 6%, rgba(0,217,255,.18), transparent 22%),
-    radial-gradient(circle at 88% 12%, rgba(255,61,242,.18), transparent 26%),
-    radial-gradient(circle at 52% 92%, rgba(145,68,255,.22), transparent 30%),
-    linear-gradient(135deg,#020512 0%,#030817 45%,#12051f 100%) !important;
-}
-
-.topbar{
-  padding:24px 36px 18px !important;
-}
-
-h1{
-  font-size:clamp(42px,5.6vw,76px) !important;
-  letter-spacing:.035em;
-  color:#fff;
-  text-shadow:
-    0 0 10px rgba(255,255,255,.30),
-    0 0 28px rgba(0,217,255,.72),
-    0 0 50px rgba(0,217,255,.28) !important;
-}
-
-.app-shell{
-  grid-template-columns:320px minmax(620px,1fr) 320px !important;
-  gap:20px !important;
-  padding:0 24px 30px !important;
-}
-
-.glass{
-  background:rgba(3,8,24,.72) !important;
-  border:1px solid rgba(180,200,255,.22) !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.03),
-    0 30px 80px rgba(0,0,0,.48) !important;
   backdrop-filter:blur(16px);
-}
-
-.score-panel,
-.final-panel{
-  border-radius:22px !important;
-}
-
-.game-panel{
-  border-radius:22px !important;
-  background:
-    radial-gradient(circle at 15% 15%, rgba(0,217,255,.12), transparent 26%),
-    radial-gradient(circle at 86% 24%, rgba(255,61,242,.10), transparent 28%),
-    rgba(3,8,24,.74) !important;
-}
-
-.panel-title span,
-.final-panel h4{
-  color:#fff;
-  text-shadow:0 0 16px rgba(255,255,255,.16);
-}
-
-.panel-title small{
-  color:#8fb8ff !important;
-}
-
-/* Team score cards: blue/red neon, like TV quiz panels */
-.team-card{
-  min-height:150px;
-  border-radius:20px !important;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.05),rgba(0,0,0,.32)),
-    rgba(5,12,28,.88) !important;
-  border:2px solid rgba(255,255,255,.12) !important;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;
   box-shadow:
-    inset 0 0 30px rgba(255,255,255,.035),
-    0 18px 34px rgba(0,0,0,.38) !important;
+    0 30px 90px rgba(0,0,0,.45),
+    inset 0 0 0 1px rgba(255,255,255,.04);
 }
 
-.team-card::before{
-  width:100% !important;
-  height:100% !important;
-  background:none !important;
-  border-radius:18px;
-  pointer-events:none;
-}
-
-.team-card:nth-child(1){
-  border-color:#008cff !important;
-  box-shadow:
-    inset 0 0 25px rgba(0,140,255,.16),
-    0 0 24px rgba(0,140,255,.38) !important;
-}
-
-.team-card:nth-child(1)::after{
-  content:"";
-  position:absolute;
-  inset:8px;
-  border-radius:16px;
-  border:2px dotted rgba(0,140,255,.65);
-  pointer-events:none;
-}
-
-.team-card:nth-child(2){
-  border-color:#ff2d2d !important;
-  box-shadow:
-    inset 0 0 25px rgba(255,45,45,.16),
-    0 0 24px rgba(255,45,45,.38) !important;
-}
-
-.team-card:nth-child(2)::after{
-  content:"";
-  position:absolute;
-  inset:8px;
-  border-radius:16px;
-  border:2px dotted rgba(255,45,45,.65);
-  pointer-events:none;
-}
-
-.team-card.selected{
-  border-color:#ffd166 !important;
-  box-shadow:
-    inset 0 0 28px rgba(255,209,102,.18),
-    0 0 34px rgba(255,209,102,.58) !important;
-}
-
-.team-name{
-  position:relative;
-  z-index:2;
-  font-size:22px !important;
-  letter-spacing:.03em;
-}
-
-.team-score{
-  position:relative;
-  z-index:2;
-  font-size:68px !important;
-  color:#fff;
-  text-shadow:
-    0 5px 18px rgba(0,0,0,.55),
-    0 0 22px rgba(255,255,255,.22);
-}
-
-/* Left current turn guide */
-.selected-team-card{
-  background:
-    radial-gradient(circle at 50% 80%, rgba(0,217,255,.08), transparent 42%),
-    rgba(0,0,0,.38) !important;
-  border:1px solid rgba(0,217,255,.32);
-  border-radius:20px !important;
-}
-
-.selected-team-card small{
-  color:#00d9ff !important;
-  font-weight:1000;
-  text-transform:uppercase;
-}
-
-/* Header versus area */
-.round-row{
-  min-height:132px;
-}
-
-.round-row h2{
-  font-size:clamp(34px,3.2vw,52px) !important;
-  letter-spacing:.01em;
-}
-
-.round-row h2::first-letter{
-  color:#1e90ff;
-}
-
-/* Top buzzer: black/gold/blue TV alert */
-.top-buzzer{
-  min-width:410px !important;
-  max-width:600px !important;
-  min-height:92px !important;
-  border-radius:20px !important;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.52)),
-    rgba(5,5,12,.92) !important;
-  color:#fff !important;
-  border:2px solid #ffd166 !important;
-  font-size:clamp(18px,1.65vw,28px) !important;
-  line-height:1.05 !important;
-  box-shadow:
-    0 0 4px rgba(255,209,102,.85),
-    0 0 30px rgba(255,209,102,.45),
-    0 0 54px rgba(0,217,255,.28),
-    inset 0 0 24px rgba(255,209,102,.08) !important;
-}
-
-.top-buzzer.team-1{
-  border-color:#ffd166 !important;
-  color:#fff !important;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.56)),
-    rgba(4,9,22,.94) !important;
-}
-
-.top-buzzer.team-2{
-  border-color:#ffd166 !important;
-  color:#fff !important;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.56)),
-    rgba(4,9,22,.94) !important;
-}
-
-.top-buzzer.team-1{
-  text-shadow:0 0 18px rgba(0,140,255,.9);
-}
-
-.top-buzzer.team-2{
-  text-shadow:0 0 18px rgba(255,45,45,.9);
-}
-
-/* Timer */
-.timer{
-  width:116px !important;
-  height:116px !important;
-  border:6px solid #00d9ff !important;
-  background:rgba(0,0,0,.22);
-  font-size:50px !important;
-  box-shadow:
-    0 0 28px rgba(0,217,255,.70),
-    inset 0 0 26px rgba(0,217,255,.12) !important;
-}
-
-.timer-btn{
-  background:rgba(255,255,255,.16) !important;
-}
-
-/* Question card: stage look */
-.question-card{
-  min-height:500px !important;
-  border-radius:26px !important;
-  border:1px solid rgba(255,61,242,.52) !important;
-  background:
-    radial-gradient(circle at 50% 96%, rgba(255,61,242,.32), transparent 20%),
-    radial-gradient(circle at 50% 20%, rgba(0,100,255,.28), transparent 18%),
-    radial-gradient(circle at 10% 50%, rgba(0,140,255,.15), transparent 26%),
-    radial-gradient(circle at 88% 44%, rgba(255,61,242,.13), transparent 26%),
-    linear-gradient(135deg,rgba(0,12,42,.92),rgba(10,0,36,.95)) !important;
-  box-shadow:
-    inset 0 0 90px rgba(0,0,0,.38),
-    0 0 22px rgba(255,61,242,.18) !important;
-}
-
-.question-card::before{
-  content:"";
-  position:absolute;
-  left:12%;
-  right:12%;
-  bottom:28px;
-  height:80px;
-  border-radius:50%;
-  background:radial-gradient(ellipse at center, rgba(255,61,242,.42), rgba(80,0,180,.18) 48%, transparent 72%);
-  filter:blur(2px);
-  opacity:.7;
-}
-
-.visual{
-  font-size:110px !important;
-  z-index:2;
-}
-
-.question-type,
-.question-card h3,
-.answer-box{
-  position:relative;
-  z-index:2;
-}
-
-.question-type{
-  color:#ffd21f !important;
-  font-size:20px !important;
-  text-shadow:0 0 18px rgba(255,210,31,.25);
-}
-
-.question-card h3{
-  font-size:clamp(44px,4.6vw,72px) !important;
-  text-shadow:
-    0 7px 18px rgba(0,0,0,.55),
-    0 0 18px rgba(255,255,255,.14);
-}
-
-/* Buttons */
-.control-btn,
-.ghost-btn,
-.small-btn{
-  border-radius:14px !important;
-  border:1px solid rgba(255,255,255,.16) !important;
-  box-shadow:0 10px 24px rgba(0,0,0,.28) !important;
-}
-
-#nextBtn{
-  background:linear-gradient(135deg,#0069ff,#00d9ff) !important;
-}
-
-#correctBtn{
-  background:linear-gradient(135deg,#008f35,#22c55e) !important;
-}
-
-#wrongBtn{
-  background:linear-gradient(135deg,#b91c1c,#ef4444) !important;
-}
-
-.gold{
-  background:linear-gradient(135deg,#f59e0b,#ffd21f) !important;
-}
-
-/* Final panel */
-.winner-box{
-  background:rgba(0,0,0,.36) !important;
-  border:1px solid rgba(255,255,255,.08);
-}
-
-.finalist{
-  background:rgba(255,255,255,.13) !important;
-}
-
-/* Fast center flash keeps team colors */
-.buzz-center-flash.team-1 .buzz-center-card{
-  background:linear-gradient(135deg,#005bea,#00d9ff,#005bea) !important;
-}
-
-.buzz-center-flash.team-2 .buzz-center-card{
-  background:linear-gradient(135deg,#b4001c,#ff2d2d,#ff6b6b) !important;
-}
-
-@media (max-width:1200px){
-  .app-shell{
-    grid-template-columns:1fr !important;
-  }
-}
-
-
-/* ==========================================================
-   v15 RESPONSIVE ONLY: fixes layout on laptop, TV and small screens
-   Logic remains unchanged.
-   ========================================================== */
-
-html, body{
-  width:100%;
-  max-width:100%;
-  overflow-x:hidden !important;
-}
-
-*{ box-sizing:border-box; }
+/* ================= HEADER ================= */
 
 .topbar{
-  display:grid !important;
-  grid-template-columns:minmax(280px,1fr) auto !important;
-  align-items:start !important;
-  gap:18px !important;
-  padding:18px 24px 14px !important;
+  position:relative;
+  padding:16px 24px;
 }
 
-.top-actions{
-  justify-content:flex-end !important;
-  flex-wrap:wrap !important;
-}
-
-.app-shell{
-  width:100% !important;
-  max-width:100vw !important;
-  display:grid !important;
-  grid-template-columns:minmax(230px,300px) minmax(0,1fr) minmax(230px,300px) !important;
-  gap:16px !important;
-  padding-left:20px !important;
-  padding-right:20px !important;
-  overflow:hidden !important;
-}
-
-.score-panel,
-.game-panel,
-.final-panel{
-  min-width:0 !important;
-  overflow:hidden !important;
-}
-
-.round-row{
-  width:100% !important;
-  display:grid !important;
-  grid-template-columns:minmax(220px,1fr) minmax(260px,520px) auto !important;
-  align-items:center !important;
-  gap:16px !important;
-}
-
-.round-row > div:first-child{
-  min-width:0 !important;
-}
-
-.round-row h2{
-  overflow-wrap:anywhere !important;
-  line-height:1.05 !important;
-}
-
-.top-buzzer{
-  width:100% !important;
-  min-width:0 !important;
-  max-width:520px !important;
-  min-height:70px !important;
-  padding:10px 18px !important;
-  font-size:clamp(15px,1.6vw,24px) !important;
-  white-space:normal !important;
-}
-
-.timer-wrap{
-  min-width:92px !important;
-  justify-self:end !important;
-}
-
-.timer{
-  width:clamp(82px,7vw,116px) !important;
-  height:clamp(82px,7vw,116px) !important;
-  font-size:clamp(34px,4vw,50px) !important;
-}
-
-.question-card{
-  min-height:clamp(330px,46vh,500px) !important;
-  padding:clamp(18px,2.2vw,30px) !important;
-}
-
-.visual{
-  font-size:clamp(72px,8vw,110px) !important;
-}
-
-.question-card h3{
-  font-size:clamp(32px,4vw,72px) !important;
-}
-
-.question-type{
-  font-size:clamp(14px,1.4vw,20px) !important;
-}
-
-.host-controls{
-  display:grid !important;
-  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
-  gap:10px !important;
-}
-
-.control-btn,
-.small-btn,
-.ghost-btn,
-.timer-btn{
-  min-width:0 !important;
-  white-space:normal !important;
-  overflow-wrap:break-word !important;
-}
-
-.team-card{
-  min-height:clamp(110px,15vh,150px) !important;
-}
-
-.team-name{
-  font-size:clamp(17px,1.4vw,22px) !important;
-}
-
-.team-score{
-  font-size:clamp(46px,4.7vw,68px) !important;
-}
-
-@media (max-width:1440px){
-  h1{
-    font-size:clamp(40px,5vw,62px) !important;
-  }
-
-  .app-shell{
-    grid-template-columns:minmax(220px,280px) minmax(0,1fr) minmax(220px,280px) !important;
-    gap:14px !important;
-  }
-
-  .score-panel,
-  .game-panel,
-  .final-panel{
-    padding:16px !important;
-  }
-
-  .round-row{
-    grid-template-columns:minmax(200px,1fr) minmax(240px,440px) auto !important;
-  }
-
-  .top-buzzer{
-    max-width:440px !important;
-  }
-}
-
-@media (max-width:1200px){
-  .topbar{
-    grid-template-columns:1fr !important;
-  }
-
-  .top-actions{
-    justify-content:flex-start !important;
-  }
-
-  .app-shell{
-    grid-template-columns:minmax(210px,260px) minmax(0,1fr) !important;
-  }
-
-  .final-panel{
-    grid-column:1 / -1 !important;
-  }
-
-  .round-row{
-    grid-template-columns:minmax(180px,1fr) minmax(220px,420px) auto !important;
-  }
-
-  .host-controls{
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-  }
-}
-
-@media (max-width:980px){
-  .app-shell{
-    grid-template-columns:1fr !important;
-    overflow:visible !important;
-  }
-
-  .round-row{
-    grid-template-columns:1fr !important;
-    gap:12px !important;
-  }
-
-  .top-buzzer{
-    max-width:100% !important;
-  }
-
-  .timer-wrap{
-    justify-self:start !important;
-  }
-
-  .host-controls{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
-
-  .teams-container{
-    grid-template-columns:1fr 1fr !important;
-  }
-}
-
-@media (max-width:640px){
-  .topbar{
-    padding:14px 14px 10px !important;
-  }
-
-  h1{
-    font-size:clamp(34px,12vw,48px) !important;
-  }
-
-  .top-actions{
-    display:grid !important;
-    grid-template-columns:1fr !important;
-    width:100% !important;
-  }
-
-  .app-shell{
-    padding-left:12px !important;
-    padding-right:12px !important;
-    gap:12px !important;
-  }
-
-  .score-panel,
-  .game-panel,
-  .final-panel{
-    padding:14px !important;
-    border-radius:18px !important;
-  }
-
-  .teams-container{
-    grid-template-columns:1fr !important;
-  }
-
-  .host-controls{
-    grid-template-columns:1fr !important;
-  }
-
-  .question-card{
-    min-height:310px !important;
-  }
-}
-
-@media (min-width:1600px){
-  .app-shell{
-    grid-template-columns:340px minmax(0,1fr) 340px !important;
-    gap:22px !important;
-    padding-left:28px !important;
-    padding-right:28px !important;
-  }
-
-  .question-card{
-    min-height:52vh !important;
-  }
-}
-
-
-/* ==========================================================
-   v16 FULLSCREEN FIT ONLY: prevents vertical overflow in F11
-   Logic remains unchanged.
-   ========================================================== */
-
-html,
-body{
-  height:100%;
-  min-height:100%;
-  overflow:hidden !important;
-}
-
-body{
-  height:100vh !important;
-  max-height:100vh !important;
-  display:flex !important;
-  flex-direction:column !important;
-}
-
-/* Header smaller so the app fits in one TV/laptop screen */
-.topbar{
-  flex:0 0 auto !important;
-  padding:10px 18px 6px !important;
-  gap:10px !important;
-}
-
-.eyebrow{
-  font-size:10px !important;
-  letter-spacing:.16em !important;
-}
-
-h1{
-  font-size:clamp(30px,4.5vw,56px) !important;
-  line-height:.88 !important;
-  margin:0 !important;
-}
-
-.top-actions select,
-.top-actions button{
-  padding:9px 12px !important;
-  font-size:13px !important;
-  border-radius:12px !important;
-}
-
-/* App takes remaining height only */
-.app-shell{
-  flex:1 1 auto !important;
-  min-height:0 !important;
-  height:calc(100vh - 88px) !important;
-  max-height:calc(100vh - 88px) !important;
-  overflow:hidden !important;
-
-  padding:6px 18px 12px !important;
-  gap:14px !important;
-
-  grid-template-columns: minmax(215px,280px) minmax(0,1fr) minmax(215px,280px) !important;
-}
-
-.score-panel,
-.game-panel,
-.final-panel{
-  height:100% !important;
-  max-height:100% !important;
-  min-height:0 !important;
-  overflow:hidden !important;
-  padding:14px !important;
-  border-radius:18px !important;
-}
-
-/* Compact side panels */
-.panel-title{
-  margin-bottom:8px !important;
-  font-size:15px !important;
-}
-
-.panel-title small{
-  font-size:10px !important;
-}
-
-.teams-container{
-  gap:10px !important;
-}
-
-.team-card{
-  min-height:112px !important;
-  max-height:130px !important;
-  padding:12px !important;
-}
-
-.team-card::after{
-  inset:7px !important;
-}
-
-.team-name{
-  font-size:18px !important;
-}
-
-.team-score{
-  font-size:54px !important;
-  margin-top:4px !important;
-}
-
-.score-actions{
-  margin:10px 0 !important;
-  gap:8px !important;
-}
-
-.small-btn{
-  padding:10px 8px !important;
-}
-
-.selected-team-card{
-  padding:12px !important;
-  border-radius:16px !important;
-}
-
-.selected-team-card strong{
-  font-size:17px !important;
-}
-
-.selected-team-card p{
-  font-size:11px !important;
-  line-height:1.22 !important;
-}
-
-/* Center panel compact */
-.round-row{
-  min-height:84px !important;
-  grid-template-columns:minmax(210px,1fr) minmax(240px,430px) auto !important;
-  gap:12px !important;
-  align-items:center !important;
-}
-
-.round-row h2{
-  font-size:clamp(28px,3vw,42px) !important;
-  line-height:.98 !important;
-}
-
-.top-buzzer{
-  min-height:58px !important;
-  max-width:430px !important;
-  padding:8px 16px !important;
-  font-size:clamp(14px,1.4vw,22px) !important;
-  border-radius:16px !important;
-}
-
-.timer{
-  width:78px !important;
-  height:78px !important;
-  font-size:36px !important;
-  border-width:5px !important;
-}
-
-.timer-btn{
-  padding:8px 12px !important;
-  font-size:13px !important;
-  border-radius:12px !important;
-}
-
-.question-card{
-  min-height:0 !important;
-  height:calc(100% - 230px) !important;
-  max-height:calc(100% - 230px) !important;
-  margin:10px 0 !important;
-  padding:16px !important;
-  border-radius:22px !important;
-  display:grid !important;
-  align-content:center !important;
-  justify-items:center !important;
-}
-
-.visual{
-  font-size:clamp(58px,6vw,88px) !important;
-}
-
-.question-type{
-  font-size:clamp(13px,1.2vw,17px) !important;
-  margin:6px 0 !important;
-}
-
-.question-card h3{
-  font-size:clamp(28px,3.6vw,54px) !important;
-  line-height:1.02 !important;
-}
-
-.answer-box{
-  margin-top:12px !important;
-  padding:10px 16px !important;
-  font-size:18px !important;
-}
-
-.host-controls{
-  gap:8px !important;
-}
-
-.control-btn{
-  padding:10px 10px !important;
-  font-size:13px !important;
-  border-radius:12px !important;
-}
-
-.progress-wrap{
-  margin-top:8px !important;
-}
-
-.progress-label{
-  font-size:12px !important;
-  margin-bottom:5px !important;
-}
-
-.progress-bar{
-  height:10px !important;
-}
-
-/* Compact final panel */
-.winner-box{
-  padding:12px !important;
-  margin-bottom:12px !important;
-}
-
-.winner-box strong{
-  font-size:22px !important;
-}
-
-.winner-box p{
-  font-size:12px !important;
-}
-
-.final-panel h4{
-  font-size:15px !important;
-  margin-bottom:8px !important;
-}
-
-.finalist{
-  padding:9px 10px !important;
-  font-size:13px !important;
-}
-
-.full{
-  margin-top:8px !important;
-}
-
-/* Main laptop / projector widths */
-@media (max-width:1366px){
-  .app-shell{
-    grid-template-columns: minmax(200px,250px) minmax(0,1fr) minmax(200px,250px) !important;
-    gap:12px !important;
-    padding-left:14px !important;
-    padding-right:14px !important;
-  }
-
-  .score-panel,
-  .game-panel,
-  .final-panel{
-    padding:12px !important;
-  }
-
-  .round-row{
-    grid-template-columns:minmax(170px,1fr) minmax(210px,360px) auto !important;
-  }
-
-  .top-buzzer{
-    max-width:360px !important;
-    min-height:54px !important;
-  }
-
-  .team-card{
-    min-height:100px !important;
-  }
-
-  .team-score{
-    font-size:48px !important;
-  }
-
-  .question-card{
-    height:calc(100% - 210px) !important;
-    max-height:calc(100% - 210px) !important;
-  }
-
-  .control-btn{
-    padding:9px 8px !important;
-    font-size:12px !important;
-  }
-}
-
-/* Short-height screens: even tighter */
-@media (max-height:760px){
-  .topbar{
-    padding:6px 18px 4px !important;
-  }
-
-  h1{
-    font-size:clamp(28px,4vw,48px) !important;
-  }
-
-  .app-shell{
-    height:calc(100vh - 68px) !important;
-    max-height:calc(100vh - 68px) !important;
-  }
-
-  .round-row{
-    min-height:72px !important;
-  }
-
-  .question-card{
-    height:calc(100% - 195px) !important;
-    max-height:calc(100% - 195px) !important;
-    margin:8px 0 !important;
-  }
-
-  .visual{
-    font-size:clamp(46px,5vw,72px) !important;
-  }
-
-  .question-card h3{
-    font-size:clamp(24px,3.3vw,46px) !important;
-  }
-
-  .timer{
-    width:68px !important;
-    height:68px !important;
-    font-size:32px !important;
-  }
-
-  .timer-btn{
-    padding:6px 10px !important;
-  }
-
-  .team-card{
-    min-height:88px !important;
-  }
-
-  .team-score{
-    font-size:42px !important;
-  }
-
-  .selected-team-card{
-    padding:9px !important;
-  }
-}
-
-/* If screen is too narrow, allow vertical layout instead of broken layout */
-@media (max-width:980px){
-  html,
-  body{
-    overflow:auto !important;
-    height:auto !important;
-    max-height:none !important;
-  }
-
-  body{
-    display:block !important;
-  }
-
-  .app-shell{
-    height:auto !important;
-    max-height:none !important;
-    overflow:visible !important;
-  }
-
-  .score-panel,
-  .game-panel,
-  .final-panel{
-    height:auto !important;
-    max-height:none !important;
-  }
-
-  .question-card{
-    height:auto !important;
-    max-height:none !important;
-    min-height:320px !important;
-  }
-}
-
-
-/* ==========================================================
-   v18 BUZZER SPACE FIX ONLY
-   Keeps the top turn alert from pushing the layout down.
-   Logic remains unchanged.
-   ========================================================== */
-
-.top-buzzer{
-  flex-shrink:0 !important;
-}
-
-/* Instead of display:none, reserve the same space invisibly.
-   This prevents the question/progress area from jumping down
-   when "TURNO PARA..." appears. */
-.top-buzzer.hidden{
-  display:flex !important;
-  visibility:hidden !important;
-  opacity:0 !important;
-  pointer-events:none !important;
-}
-
-/* When active, show it in the same reserved space. */
-.top-buzzer:not(.hidden){
-  visibility:visible !important;
-  opacity:1 !important;
-}
-
-/* Slightly tighter center area so the progress line remains visible. */
-.question-card{
-  height:calc(100% - 238px) !important;
-  max-height:calc(100% - 238px) !important;
-}
-
-@media (max-width:1366px){
-  .question-card{
-    height:calc(100% - 218px) !important;
-    max-height:calc(100% - 218px) !important;
-  }
-}
-
-@media (max-height:760px){
-  .question-card{
-    height:calc(100% - 202px) !important;
-    max-height:calc(100% - 202px) !important;
-  }
-}
-
-
-/* ==========================================================
-   v19 BOTTOM PROGRESS VISIBILITY FIX ONLY
-   Gives the progress area a little more room.
-   Logic remains unchanged.
-   ========================================================== */
-
-.game-panel{
-  padding-bottom:22px !important;
-}
-
-.question-card{
-  height:calc(100% - 252px) !important;
-  max-height:calc(100% - 252px) !important;
-  margin-bottom:8px !important;
-}
-
-.host-controls{
-  margin-bottom:8px !important;
-}
-
-.progress-wrap{
-  margin-top:4px !important;
-  padding-bottom:4px !important;
-}
-
-.progress-label{
-  line-height:1.1 !important;
-}
-
-@media (max-width:1366px){
-  .question-card{
-    height:calc(100% - 232px) !important;
-    max-height:calc(100% - 232px) !important;
-  }
-
-  .game-panel{
-    padding-bottom:20px !important;
-  }
-}
-
-@media (max-height:760px){
-  .question-card{
-    height:calc(100% - 216px) !important;
-    max-height:calc(100% - 216px) !important;
-  }
-
-  .host-controls{
-    margin-bottom:6px !important;
-  }
-}
-
-
-/* ==========================================================
-   v20 TV BROADCAST MODE — LIVE SHOW UPGRADE
-   ========================================================== */
-
-/* Simula marco de cámara de TV */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  border:18px solid rgba(255,255,255,.06);
-  box-shadow:
-    inset 0 0 120px rgba(0,0,0,.6),
-    0 0 80px rgba(0,217,255,.12);
-  pointer-events:none;
-  z-index:9998;
-}
-
-/* Esquinas tipo transmisión en vivo */
-body::after{
-  content:"● LIVE";
-  position:fixed;
-  top:18px;
-  right:22px;
-  font-weight:1000;
-  letter-spacing:.2em;
-  font-size:14px;
-  color:#ff2d2d;
-  background:rgba(0,0,0,.55);
-  padding:8px 14px;
-  border-radius:999px;
-  border:1px solid rgba(255,45,45,.6);
-  box-shadow:0 0 20px rgba(255,45,45,.35);
-  z-index:9999;
-  animation:liveBlink 1.2s infinite;
-}
-
-@keyframes liveBlink{
-  0%,100%{opacity:1}
-  50%{opacity:.55}
-}
-
-/* Lower third tipo TV (nombre del programa) */
 .topbar::after{
   content:"SHOW BÍBLICO • COMPETENCIA EN VIVO";
   position:absolute;
   left:50%;
   transform:translateX(-50%);
   bottom:-10px;
-  font-size:12px;
+
+  font-size:11px;
   letter-spacing:.25em;
-  font-weight:900;
-  color:rgba(255,255,255,.75);
-  background:rgba(0,0,0,.45);
-  padding:6px 16px;
+  color:rgba(255,255,255,.7);
+
+  background:rgba(0,0,0,.4);
+  padding:6px 14px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
 }
 
-/* Efecto cámara (ligero zoom dinámico) */
+/* ================= TITLE ================= */
+
+h1{
+  font-size:clamp(32px,5vw,70px);
+  text-transform:uppercase;
+  text-shadow:
+    0 0 20px rgba(0,217,255,.6),
+    0 0 40px rgba(255,61,242,.25);
+}
+
+/* ================= GAME LAYOUT ================= */
+
+.app-shell{
+  display:grid;
+  grid-template-columns:320px 1fr 320px;
+  gap:18px;
+  padding:0 20px 20px;
+}
+
+/* ================= TEAM CARDS ================= */
+
+.team-card{
+  background:rgba(5,10,25,.8);
+  border-radius:18px;
+  padding:14px;
+
+  border:2px solid rgba(255,255,255,.08);
+  box-shadow:0 0 25px rgba(0,0,0,.3);
+}
+
+.team-card:nth-child(1){
+  border-color:var(--blue);
+  box-shadow:0 0 25px rgba(0,140,255,.35);
+}
+
+.team-card:nth-child(2){
+  border-color:var(--red);
+  box-shadow:0 0 25px rgba(255,45,45,.35);
+}
+
+.team-score{
+  font-size:56px;
+  font-weight:900;
+}
+
+/* ================= QUESTION STAGE ================= */
+
 .question-card{
-  animation:cameraZoom 8s ease-in-out infinite;
+  position:relative;
+  min-height:420px;
+
+  border-radius:22px;
+  padding:20px;
+
+  background:
+    radial-gradient(circle at 50% 100%, rgba(255,61,242,.25), transparent 40%),
+    radial-gradient(circle at 50% 20%, rgba(0,140,255,.18), transparent 40%),
+    rgba(5,8,20,.85);
+
+  border:1px solid rgba(255,61,242,.25);
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,.5),
+    inset 0 0 60px rgba(0,0,0,.4);
 }
 
-@keyframes cameraZoom{
-  0%,100%{transform:scale(1)}
+/* subtle camera zoom */
+.question-card{
+  animation:zoom 8s ease-in-out infinite;
+}
+
+@keyframes zoom{
   50%{transform:scale(1.01)}
 }
 
-/* Glow de estudio más realista */
-.glass{
+/* ================= BUZZER ================= */
+
+.top-buzzer{
+  padding:10px 18px;
+  border-radius:999px;
+
+  font-weight:900;
+  text-transform:uppercase;
+
+  background:rgba(0,0,0,.6);
+  border:2px solid var(--gold);
+
   box-shadow:
-    0 0 0 1px rgba(255,255,255,.05),
-    0 40px 120px rgba(0,0,0,.55),
-    0 0 60px rgba(0,217,255,.08) !important;
+    0 0 20px rgba(255,209,102,.4);
 }
 
-/* Spotlights simulados */
-body{
-  background:
-    radial-gradient(circle at 50% 10%, rgba(255,255,255,.08), transparent 40%),
-    radial-gradient(circle at 20% 30%, rgba(0,217,255,.10), transparent 45%),
-    radial-gradient(circle at 80% 30%, rgba(255,61,242,.10), transparent 45%),
-    radial-gradient(circle at 50% 90%, rgba(255,209,102,.06), transparent 50%),
-    linear-gradient(135deg,#02040f,#050818,#0a0620) !important;
+/* ================= TIMER ================= */
+
+.timer{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+
+  border:5px solid var(--cyan);
+  box-shadow:0 0 30px rgba(0,217,255,.4);
+
+  font-size:40px;
+  font-weight:900;
 }
 
-/* Flash de cámara cuando alguien responde */
+/* ================= BUTTONS ================= */
+
+button{
+  border-radius:14px;
+  font-weight:900;
+}
+
+#correctBtn{ background:linear-gradient(135deg,#16a34a,#22c55e); }
+#wrongBtn{ background:linear-gradient(135deg,#b91c1c,#ef4444); }
+#nextBtn{ background:linear-gradient(135deg,#0069ff,#00d9ff); }
+
+/* ================= LIVE FLASH ================= */
+
 .flash-camera{
   position:fixed;
   inset:0;
   background:white;
   opacity:0;
   pointer-events:none;
-  z-index:99999;
 }
 
 .flash-camera.active{
-  animation:flashCam .35s ease;
+  animation:flash .35s ease;
 }
 
-@keyframes flashCam{
+@keyframes flash{
   0%{opacity:0}
-  20%{opacity:.9}
+  30%{opacity:.9}
   100%{opacity:0}
-}
-
-/* Efecto audiencia/energía */
-body{
-  overflow:hidden;
-}
-
-.app-shell::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 50% 120%, rgba(255,255,255,.05), transparent 55%);
-  pointer-events:none;
-  z-index:0;
 }
