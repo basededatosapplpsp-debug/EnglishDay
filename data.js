@@ -188,5 +188,5 @@ const GAME_DATA = [
       { type:"Biblia", visual:"📖", q:"¿Qué apóstol era médico?", a:"Lucas" }
 
     ]
-  }
+  } 
 ];
